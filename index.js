@@ -54,8 +54,80 @@
       document.getElementById("topBadge").textContent=cartCount;
       document.getElementById("bottomBadge").textContent=cartCount;
     }
-    function buyNow(name){alert("Buy Now: "+name)}
+
+    
+    function buyNow(name){
+
+  const cards = document.querySelectorAll(".card");
+
+  let selectedCard = null;
+
+  cards.forEach(card => {
+
+    const nameEl = card.querySelector(".name");
+
+    if (
+      nameEl &&
+      nameEl.textContent.trim() === name.trim()
+    ) {
+      selectedCard = card;
+    }
+
+  });
+
+
+  if (!selectedCard) {
+    alert("Product not found.");
+    return;
+  }
+
+
+  const imageEl =
+    selectedCard.querySelector(".product-img img");
+
+  const currentEl =
+    selectedCard.querySelector(".current");
+
+  const oldEl =
+    selectedCard.querySelector(".old");
+
+
+  const product = {
+
+    name: name,
+
+    image: imageEl
+      ? imageEl.src
+      : "",
+
+    price: currentEl
+      ? Number(
+          currentEl.textContent
+            .replace(/[^\d.]/g, "")
+        )
+      : 0,
+
+    oldPrice: oldEl
+      ? Number(
+          oldEl.textContent
+            .replace(/[^\d.]/g, "")
+        )
+      : 0,
+
+    quantity: 1
+
+  };
+
+
+  localStorage.setItem(
+    "roxxx_buy_now",
+    JSON.stringify(product)
+  );
+
+
+  window.location.href = "product.html";
+}
     function openSearch(){alert("Search will be connected later.")}
-    function openCart(){alert("Cart items: "+cartCount)}
+    function openCart(){window.location.href = "cart.html";}
     function openAccount(){alert("Account will be connected later.")}
  

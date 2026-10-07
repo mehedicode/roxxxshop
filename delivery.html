@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+  <title>Delivery Information - roxxx.shop</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: "var(--color-bg)",
+              dark: "var(--color-dark)",
+              primary: "var(--color-primary)",
+              hover: "var(--color-primary-hover)",
+              accent: "var(--color-accent)",
+              text: "var(--color-text)",
+              muted: "var(--color-muted)",
+              border: "var(--color-border)"
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="delivery.css">
+</head>
+
+<body>
+
+  <!-- TOP NAVBAR -->
+
+  <header class="bg-white border-b border-brand-border">
+
+    <div class="container mx-auto px-4 md:px-6">
+
+      <div class="h-[68px] md:h-[76px] flex items-center justify-between">
+
+        <a
+          href="index.html"
+          class="text-[22px] md:text-[25px] font-extrabold tracking-tight text-brand-dark"
+        >
+          roxxx<span class="text-brand-primary">.shop</span>
+        </a>
+
+        <a
+          href="index.html"
+          class="w-11 h-11 rounded-full flex items-center justify-center text-brand-dark"
+        >
+          <svg
+            width="23"
+            height="23"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="m15 18-6-6 6-6"/>
+          </svg>
+        </a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main class="container mx-auto px-4 md:px-6 pb-10">
+
+    <!-- INTRO -->
+
+    <section class="delivery-intro">
+
+      <div class="intro-icon">
+
+        <svg
+          width="30"
+          height="30"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <path d="M3 7h11v10H3z"/>
+          <path d="M14 10h4l3 3v4h-4"/>
+          <circle cx="7" cy="19" r="1.5"/>
+          <circle cx="18" cy="19" r="1.5"/>
+        </svg>
+
+      </div>
+
+      <div>
+
+        <h1 class="text-[23px] font-extrabold text-brand-dark">
+          Delivery Information
+        </h1>
+
+        <p class="mt-2 text-[13px] leading-5 text-brand-muted">
+          Everything you need to know about delivery at roxxx.shop.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- DELIVERY CHARGE -->
+
+    <section class="mt-6">
+
+      <h2 class="section-title">
+        Delivery Charge
+      </h2>
+
+      <div class="charge-card">
+
+        <div class="charge-row">
+
+          <div>
+            <h3>Standard Delivery</h3>
+            <p>For regular physical product orders</p>
+          </div>
+
+          <strong>৳ 60</strong>
+
+        </div>
+
+        <div class="charge-note">
+          Delivery charge is currently fixed at ৳60 for standard delivery.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- DELIVERY TIME -->
+
+    <section class="mt-8">
+
+      <h2 class="section-title">
+        Estimated Delivery Time
+      </h2>
+
+      <div class="info-card">
+
+        <div class="info-row">
+
+          <div class="info-icon">
+            1
+          </div>
+
+          <div>
+            <h3>Order Processing</h3>
+            <p>
+              Your order is prepared after confirmation.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+          <div class="info-icon">
+            2
+          </div>
+
+          <div>
+            <h3>Delivery Dispatch</h3>
+            <p>
+              The order is handed over for delivery.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+          <div class="info-icon">
+            3
+          </div>
+
+          <div>
+            <h3>Receive Your Order</h3>
+            <p>
+              The delivery partner brings your order to your address.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- DELIVERY AREAS -->
+
+    <section class="mt-8">
+
+      <h2 class="section-title">
+        Delivery Areas
+      </h2>
+
+      <div class="simple-card">
+
+        <div class="simple-icon">
+
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0z"/>
+            <circle cx="12" cy="10" r="2.5"/>
+          </svg>
+
+        </div>
+
+        <div>
+
+          <h3>Nationwide Delivery</h3>
+
+          <p>
+            We aim to deliver physical products across Bangladesh.
+            Delivery time may vary depending on the destination.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ORDER PROCESS -->
+
+    <section class="mt-8">
+
+      <h2 class="section-title">
+        How Delivery Works
+      </h2>
+
+      <div class="process-grid">
+
+        <div class="process-card">
+
+          <span>01</span>
+
+          <h3>Place Order</h3>
+
+          <p>
+            Select your product and complete checkout.
+          </p>
+
+        </div>
+
+
+        <div class="process-card">
+
+          <span>02</span>
+
+          <h3>Confirmation</h3>
+
+          <p>
+            Your order details are checked and confirmed.
+          </p>
+
+        </div>
+
+
+        <div class="process-card">
+
+          <span>03</span>
+
+          <h3>Dispatch</h3>
+
+          <p>
+            Your order is prepared and sent for delivery.
+          </p>
+
+        </div>
+
+
+        <div class="process-card">
+
+          <span>04</span>
+
+          <h3>Delivered</h3>
+
+          <p>
+            Receive your order at the provided address.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- IMPORTANT NOTE -->
+
+    <section class="mt-8">
+
+      <div class="notice-card">
+
+        <div class="notice-icon">
+          !
+        </div>
+
+        <div>
+
+          <h3>Important</h3>
+
+          <p>
+            Please provide a correct phone number and complete delivery
+            address during checkout so our delivery team can contact you
+            when necessary.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- FAQ -->
+
+    <section class="mt-8">
+
+      <h2 class="section-title">
+        Delivery FAQ
+      </h2>
+
+
+      <div class="faq-list">
+
+        <button class="faq-item" type="button">
+
+          <span>
+            How much is the delivery charge?
+          </span>
+
+          <b>+</b>
+
+        </button>
+
+        <div class="faq-answer">
+          Standard delivery charge is currently ৳60.
+        </div>
+
+
+        <button class="faq-item" type="button">
+
+          <span>
+            Do you deliver outside major cities?
+          </span>
+
+          <b>+</b>
+
+        </button>
+
+        <div class="faq-answer">
+          We aim to provide delivery across Bangladesh. Actual delivery
+          time can vary depending on the destination.
+        </div>
+
+
+        <button class="faq-item" type="button">
+
+          <span>
+            Can I change my address after ordering?
+          </span>
+
+          <b>+</b>
+
+        </button>
+
+        <div class="faq-answer">
+          Please contact customer support as soon as possible if you need
+          to change your delivery information.
+        </div>
+
+
+        <button class="faq-item" type="button">
+
+          <span>
+            What if I am unavailable during delivery?
+          </span>
+
+          <b>+</b>
+
+        </button>
+
+        <div class="faq-answer">
+          The delivery partner may contact you to arrange another suitable
+          delivery attempt.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SUPPORT -->
+
+    <section class="support-box">
+
+      <h2>
+        Need help with delivery?
+      </h2>
+
+      <p>
+        Contact our support team if you have questions about your order.
+      </p>
+
+      <button id="supportBtn" type="button">
+        Contact Support
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <!-- BOTTOM NAV -->
+
+  <nav class="bottom">
+
+    <div class="bottom-inner">
+
+      <a href="index.html" class="nav-item">
+
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m3 10 9-7 9 7"/>
+          <path d="M5 9v11h14V9"/>
+          <path d="M9 20v-6h6v6"/>
+        </svg>
+
+        <span>Home</span>
+
+      </a>
+
+
+      <a href="delivery.html" class="nav-item active">
+
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 7h11v10H3z"/>
+          <path d="M14 10h4l3 3v4h-7z"/>
+          <circle cx="7" cy="19" r="1.5"/>
+          <circle cx="18" cy="19" r="1.5"/>
+        </svg>
+
+        <span>Delivery</span>
+
+      </a>
+
+
+      <a href="cart.html" class="nav-item">
+
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="20" r="1"/>
+          <circle cx="19" cy="20" r="1"/>
+          <path d="M3 4h2l2.6 11.2a2 2 0 0 0 2 1.55h7.8a2 2 0 0 0 1.9-1.37L21 8H6"/>
+        </svg>
+
+        <span>Cart</span>
+
+      </a>
+
+
+      <a href="index.html" class="nav-item">
+
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7"/>
+          <path d="m20 20-4-4"/>
+        </svg>
+
+        <span>Search</span>
+
+      </a>
+
+
+      <a href="account.html" class="nav-item">
+
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"/>
+        </svg>
+
+        <span>Account</span>
+
+      </a>
+
+    </div>
+
+  </nav>
+
+
+  <script src="delivery.js"></script>
+
+</body>
+</html>

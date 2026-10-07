@@ -1,0 +1,319 @@
+:root{
+  --color-bg:#f8fafc;
+  --color-dark:#0f172a;
+  --color-primary:#2563eb;
+  --color-primary-hover:#1d4ed8;
+  --color-accent:#06b6d4;
+  --color-text:#0f172a;
+  --color-muted:#64748b;
+  --color-border:#e2e8f0;
+  --bottom-nav-height:74px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--color-bg);
+  color:var(--color-text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  padding-bottom:calc(var(--bottom-nav-height) + env(safe-area-inset-bottom));
+}
+
+button,
+a{
+  -webkit-tap-highlight-color:transparent;
+}
+
+
+/* =========================================
+   ACCOUNT INTRO
+   ========================================= */
+
+.account-intro{
+  margin-top:24px;
+  padding:20px;
+  background:#fff;
+  border:1px solid var(--color-border);
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.account-avatar{
+  width:58px;
+  height:58px;
+  flex-shrink:0;
+  border-radius:50%;
+  background:#eff6ff;
+  color:var(--color-primary);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+
+/* =========================================
+   QUICK ACTION CARDS
+   ========================================= */
+
+.account-card{
+  min-height:94px;
+  padding:15px;
+  background:#fff;
+  border:1px solid var(--color-border);
+  border-radius:16px;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  transition:.2s ease;
+}
+
+.account-card:active{
+  transform:scale(.98);
+  background:#f8fafc;
+}
+
+.account-card-icon{
+  width:42px;
+  height:42px;
+  flex-shrink:0;
+  border-radius:12px;
+  background:#eff6ff;
+  color:var(--color-primary);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.account-card h2{
+  margin:0;
+  color:var(--color-dark);
+  font-size:14px;
+  font-weight:800;
+}
+
+.account-card p{
+  margin:4px 0 0;
+  color:var(--color-muted);
+  font-size:11px;
+  line-height:1.4;
+}
+
+
+/* =========================================
+   SECTION TITLE
+   ========================================= */
+
+.section-title{
+  margin:0 0 12px;
+  color:var(--color-dark);
+  font-size:17px;
+  font-weight:800;
+}
+
+
+/* =========================================
+   OPTION LIST
+   ========================================= */
+
+.option-list{
+  overflow:hidden;
+  background:#fff;
+  border:1px solid var(--color-border);
+  border-radius:16px;
+}
+
+.option-item{
+  min-height:72px;
+  padding:13px 14px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  border-bottom:1px solid var(--color-border);
+  transition:.2s ease;
+}
+
+.option-item:last-child{
+  border-bottom:0;
+}
+
+.option-item:active{
+  background:#f8fafc;
+}
+
+.option-icon{
+  width:40px;
+  height:40px;
+  flex-shrink:0;
+  border-radius:11px;
+  background:#f8fafc;
+  color:var(--color-dark);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.small-icon{
+  font-size:18px;
+  font-weight:800;
+}
+
+.option-content{
+  flex:1;
+  min-width:0;
+}
+
+.option-content h3{
+  margin:0;
+  color:var(--color-dark);
+  font-size:13px;
+  font-weight:800;
+}
+
+.option-content p{
+  margin:4px 0 0;
+  color:var(--color-muted);
+  font-size:11px;
+  line-height:1.4;
+}
+
+.arrow{
+  color:#94a3b8;
+  font-size:24px;
+  line-height:1;
+}
+
+
+/* =========================================
+   LOGIN BOX
+   ========================================= */
+
+.login-box{
+  margin-top:24px;
+  padding:22px 18px;
+  text-align:center;
+  background:#fff;
+  border:1px solid var(--color-border);
+  border-radius:18px;
+}
+
+.login-box h2{
+  margin:0;
+  color:var(--color-dark);
+  font-size:17px;
+  font-weight:800;
+}
+
+.login-box p{
+  margin:7px auto 0;
+  max-width:320px;
+  color:var(--color-muted);
+  font-size:12px;
+  line-height:1.6;
+}
+
+.login-btn{
+  width:100%;
+  max-width:260px;
+  min-height:45px;
+  margin-top:16px;
+  border:0;
+  border-radius:12px;
+  background:var(--color-primary);
+  color:#fff;
+  font-size:13px;
+  font-weight:800;
+}
+
+.login-btn:active{
+  background:var(--color-primary-hover);
+}
+
+
+/* =========================================
+   BOTTOM NAV
+   ========================================= */
+
+.bottom{
+  position:fixed;
+  z-index:100;
+  left:0;
+  right:0;
+  bottom:0;
+  height:var(--bottom-nav-height);
+  padding-bottom:env(safe-area-inset-bottom);
+  background:rgba(255,255,255,.97);
+  border-top:1px solid var(--color-border);
+  box-shadow:0 -6px 20px rgba(15,23,42,.08);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+
+.bottom-inner{
+  height:100%;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+}
+
+.nav-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  color:var(--color-muted);
+  text-decoration:none;
+  font-size:10px;
+  font-weight:700;
+}
+
+.nav-item.active{
+  color:var(--color-primary);
+}
+
+.nav-icon{
+  width:23px;
+  height:23px;
+}
+
+
+/* =========================================
+   DESKTOP
+   ========================================= */
+
+@media(min-width:768px){
+
+  .account-intro{
+    margin-top:30px;
+    padding:24px;
+  }
+
+  .account-card{
+    min-height:105px;
+    padding:18px;
+  }
+
+  .option-item{
+    min-height:78px;
+    padding:15px 18px;
+  }
+
+}
+
+@media(min-width:1200px){
+
+  .container{
+    max-width:900px;
+  }
+
+}

@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1,viewport-fit=cover"
+  >
+
+  <title>My Account - roxxx.shop</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: "var(--color-bg)",
+              dark: "var(--color-dark)",
+              primary: "var(--color-primary)",
+              hover: "var(--color-primary-hover)",
+              accent: "var(--color-accent)",
+              text: "var(--color-text)",
+              muted: "var(--color-muted)",
+              border: "var(--color-border)"
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Account CSS -->
+  <link rel="stylesheet" href="account.css">
+</head>
+
+<body>
+
+  <!-- TOP NAVBAR -->
+
+  <header class="bg-white border-b border-brand-border">
+
+    <div class="container mx-auto px-4 md:px-6">
+
+      <div class="h-[68px] md:h-[76px] flex items-center justify-between">
+
+        <a
+          href="index.html"
+          class="text-[22px] md:text-[25px] font-extrabold tracking-tight text-brand-dark"
+        >
+          roxxx<span class="text-brand-primary">.shop</span>
+        </a>
+
+        <a
+          href="index.html"
+          class="w-11 h-11 rounded-full flex items-center justify-center text-brand-dark"
+          aria-label="Back to home"
+        >
+
+          <svg
+            width="23"
+            height="23"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main class="container mx-auto px-4 md:px-6 pb-10">
+
+
+    <!-- ACCOUNT INTRO -->
+
+    <section class="account-intro">
+
+      <div class="account-avatar">
+
+        <svg
+          width="30"
+          height="30"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"/>
+        </svg>
+
+      </div>
+
+      <div class="min-w-0">
+
+        <h1 class="text-[22px] font-extrabold text-brand-dark">
+          My Account
+        </h1>
+
+        <p class="mt-1 text-[13px] text-brand-muted">
+          Manage your orders and shopping preferences.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- QUICK ACTIONS -->
+
+    <section class="mt-6">
+
+      <div class="grid grid-cols-2 gap-3">
+
+
+        <!-- Orders -->
+
+        <a href="#" class="account-card">
+
+          <div class="account-card-icon">
+
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path d="M6 3h12v18H6z"/>
+              <path d="M9 7h6"/>
+              <path d="M9 11h6"/>
+              <path d="M9 15h4"/>
+            </svg>
+
+          </div>
+
+          <div>
+
+            <h2>My Orders</h2>
+
+            <p>Track your orders</p>
+
+          </div>
+
+        </a>
+
+
+        <!-- Wishlist -->
+
+        <a href="#" class="account-card">
+
+          <div class="account-card-icon">
+
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path d="M20.8 8.6c0 5.5-8.8 10.2-8.8 10.2S3.2 14.1 3.2 8.6A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 8.8 2.5z"/>
+            </svg>
+
+          </div>
+
+          <div>
+
+            <h2>Wishlist</h2>
+
+            <p>Saved products</p>
+
+          </div>
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- ACCOUNT OPTIONS -->
+
+    <section class="mt-8">
+
+      <h2 class="section-title">
+        Account
+      </h2>
+
+
+      <div class="option-list">
+
+
+        <!-- Address -->
+
+        <a href="#" class="option-item">
+
+          <div class="option-icon">
+
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0z"/>
+              <circle cx="12" cy="10" r="2.5"/>
+            </svg>
+
+          </div>
+
+          <div class="option-content">
+
+            <h3>Saved Address</h3>
+
+            <p>Manage your delivery address</p>
+
+          </div>
+
+          <span class="arrow">›</span>
+
+        </a>
+
+
+        <!-- Payment -->
+
+        <a href="#" class="option-item">
+
+          <div class="option-icon">
+
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <rect x="3" y="5" width="18" height="14" rx="2"/>
+              <path d="M3 10h18"/>
+            </svg>
+
+          </div>
+
+          <div class="option-content">
+
+            <h3>Payment Methods</h3>
+
+            <p>Manage your payment preferences</p>
+
+          </div>
+
+          <span class="arrow">›</span>
+
+        </a>
+
+
+        <!-- Delivery -->
+
+        <a href="#" class="option-item">
+
+          <div class="option-icon">
+
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path d="M3 7h11v10H3z"/>
+              <path d="M14 10h4l3 3v4h-4"/>
+              <circle cx="7" cy="19" r="1.5"/>
+              <circle cx="18" cy="19" r="1.5"/>
+            </svg>
+
+          </div>
+
+          <div class="option-content">
+
+            <h3>Delivery Information</h3>
+
+            <p>Shipping and delivery details</p>
+
+          </div>
+
+          <span class="arrow">›</span>
+
+        </a>
+
+
+        <!-- Support -->
+
+        <a href="#" class="option-item">
+
+          <div class="option-icon">
+
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M9.5 9a2.5 2.5 0 1 1 4.3 1.7c-1.2 1.1-1.8 1.4-1.8 3"/>
+              <path d="M12 17h.01"/>
+            </svg>
+
+          </div>
+
+          <div class="option-content">
+
+            <h3>Customer Support</h3>
+
+            <p>Get help with your order</p>
+
+          </div>
+
+          <span class="arrow">›</span>
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- INFORMATION -->
+
+    <section class="mt-8">
+
+      <h2 class="section-title">
+        Information
+      </h2>
+
+
+      <div class="option-list">
+
+
+        <a href="#" class="option-item">
+
+          <div class="option-icon small-icon">
+            i
+          </div>
+
+          <div class="option-content">
+
+            <h3>About roxxx.shop</h3>
+
+            <p>Learn more about our store</p>
+
+          </div>
+
+          <span class="arrow">›</span>
+
+        </a>
+
+
+        <a href="#" class="option-item">
+
+          <div class="option-icon">
+
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path d="M6 4h12v16H6z"/>
+              <path d="M9 8h6"/>
+              <path d="M9 12h6"/>
+            </svg>
+
+          </div>
+
+          <div class="option-content">
+
+            <h3>Terms & Conditions</h3>
+
+            <p>Our terms of service</p>
+
+          </div>
+
+          <span class="arrow">›</span>
+
+        </a>
+
+
+        <a href="#" class="option-item">
+
+          <div class="option-icon">
+
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path d="M12 3l7 3v5c0 5-3.2 8.4-7 10-3.8-1.6-7-5-7-10V6l7-3z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+
+          </div>
+
+          <div class="option-content">
+
+            <h3>Privacy Policy</h3>
+
+            <p>How we protect your information</p>
+
+          </div>
+
+          <span class="arrow">›</span>
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- LOGIN AREA -->
+
+    <section class="login-box">
+
+      <h2>
+        Sign in for a better experience
+      </h2>
+
+      <p>
+        Save your information and easily manage your orders.
+      </p>
+
+      <button
+        id="loginBtn"
+        type="button"
+        class="login-btn"
+      >
+        Sign In
+      </button>
+
+    </section>
+
+
+    <!-- BRAND -->
+
+    <div class="text-center mt-10">
+
+      <div class="text-[18px] font-extrabold text-brand-dark">
+        roxxx<span class="text-brand-primary">.shop</span>
+      </div>
+
+      <p class="mt-1 text-[11px] text-brand-muted">
+        Quality products, trusted shopping <br> and a better experience for every customer.
+      </p>
+
+    </div>
+
+  </main>
+
+
+  <!-- BOTTOM NAV -->
+
+  <nav class="bottom">
+
+    <div class="bottom-inner">
+
+
+      <a href="index.html" class="nav-item">
+
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m3 10 9-7 9 7"/>
+          <path d="M5 9v11h14V9"/>
+          <path d="M9 20v-6h6v6"/>
+        </svg>
+
+        <span>Home</span>
+
+      </a>
+
+
+      <a href="#" class="nav-item">
+
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 7h11v10H3z"/>
+          <path d="M14 10h4l3 3v4h-7z"/>
+          <circle cx="7" cy="19" r="1.5"/>
+          <circle cx="18" cy="19" r="1.5"/>
+        </svg>
+
+        <span>Delivery</span>
+
+      </a>
+
+
+      <a href="cart.html" class="nav-item">
+
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="20" r="1"/>
+          <circle cx="19" cy="20" r="1"/>
+          <path d="M3 4h2l2.6 11.2a2 2 0 0 0 2 1.55h7.8a2 2 0 0 0 1.9-1.37L21 8H6"/>
+        </svg>
+
+        <span>Cart</span>
+
+      </a>
+
+
+      <a href="index.html" class="nav-item">
+
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7"/>
+          <path d="m20 20-4-4"/>
+        </svg>
+
+        <span>Search</span>
+
+      </a>
+
+
+      <a href="account.html" class="nav-item active">
+
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"/>
+        </svg>
+
+        <span>Account</span>
+
+      </a>
+
+    </div>
+
+  </nav>
+
+
+  <!-- Account JS -->
+  <script src="account.js"></script>
+
+</body>
+</html>

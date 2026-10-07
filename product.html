@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Product Details — roxxx.shop</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="product.css">
+</head>
+<body>
+<header class="top-header">
+  <a href="index.html" class="brand">roxxx<span>.shop</span></a>
+  <a href="index.html" class="back-link">←</a>
+</header>
+
+<main class="product-page">
+  <section class="product-gallery">
+    <div class="main-image-wrap">
+      <img id="productImage" src="https://placehold.co/900x900/e2e8f0/0f172a?text=Premium+Classic+Watch" alt="Premium Classic Watch">
+      <span id="discountBadge" class="discount-badge">-20%</span>
+    </div>
+  </section>
+
+  <section class="product-info">
+    <div class="rating-row">
+      <span class="stars">★★★★★</span>
+      <strong id="rating">4.8</strong>
+      <span>•</span>
+      <span id="sold">126 sold</span>
+    </div>
+
+    <h1 id="productName">Premium Classic Watch</h1>
+
+    <div class="description">
+      <h2>Product Details</h2>
+      <p>A premium quality product carefully selected for roxxx.shop customers. Product information and specifications will be connected from the admin system later.</p>
+    </div>
+
+    <div class="price-row">
+      <strong id="currentPrice">৳ 1,590</strong>
+      <del id="oldPrice">৳ 1,990</del>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="quantity-row">
+      <span>Quantity</span>
+      <div class="quantity-control">
+        <button id="minusBtn" type="button">−</button>
+        <span id="quantity">1</span>
+        <button id="plusBtn" type="button">+</button>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+
+    <div class="action-area">
+      <button id="addCartBtn" class="cart-btn" type="button">🛒 Add to Cart</button>
+      <button id="buyNowBtn" class="buy-btn" type="button">Buy Now</button>
+    </div>
+  </section>
+</main>
+
+<div id="toast" class="toast">Added to cart</div>
+
+<script src="product.js"></script>
+</body>
+</html>

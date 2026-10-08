@@ -47,94 +47,141 @@
     },2000);
     addEventListener("resize",updateHot);
 
-    /* DEMO ACTIONS */
-    let cartCount=0;
-    function addToCart(){
-      cartCount++;
-      document.getElementById("topBadge").textContent=cartCount;
-      document.getElementById("bottomBadge").textContent=cartCount;
+    function updateHomeCardPrices(){
+      document.querySelectorAll(".card").forEach(card => {
+        const detailsButton = card.querySelector("button.buy");
+        const match = detailsButton && detailsButton.getAttribute("onclick").match(/buyNow\((\d+)\)/);
+        const product = match && products.find(item => item.id === Number(match[1]));
+        const current = card.querySelector(".current");
+        const old = card.querySelector(".old");
+        const discount = card.querySelector(".discount");
+        const name = card.querySelector(".name");
+        const image = card.querySelector(".product-img img");
+        if(!product || !current) return;
+
+        const cartButton = card.querySelector("button.cart");
+        if(detailsButton) detailsButton.disabled = product.available === false;
+        if(cartButton) cartButton.disabled = product.available === false;
+
+        if(name) name.textContent = product.name;
+        if(image){
+          image.src = product.image;
+          image.alt = product.name;
+        }
+        const rating = card.querySelector(".rating b");
+        const sold = card.querySelector(".sold");
+        if(rating) rating.textContent = product.rating;
+        if(sold) sold.textContent = `(${product.sold} sold)`;
+
+        if(product.productType === "digital" && product.free){
+          current.textContent = "FREE";
+          current.classList.add("free-label");
+          if(old) old.hidden = true;
+          if(discount) discount.hidden = true;
+          return;
+        }
+
+        current.textContent = `৳ ${Number(product.price).toLocaleString("en-BD")}`;
+        current.classList.remove("free-label");
+        if(old){
+          old.textContent = `৳ ${Number(product.oldPrice).toLocaleString("en-BD")}`;
+          old.hidden = product.offerAvailable === false || Number(product.oldPrice) <= Number(product.price);
+        }
+        if(discount){
+          discount.textContent = `-${product.discount}%`;
+          discount.hidden = product.offerAvailable === false || product.free === true;
+        }
+      });
+    }
+    updateHomeCardPrices();
+
+    /* CART ACTIONS */
+    function updateCartBadges(){
+      const cart = JSON.parse(localStorage.getItem("roxxx_cart") || "[]");
+      const count = cart.reduce(
+        (total, item) => total + Number(item.quantity || 0),
+        0
+      );
+
+      document.getElementById("topBadge").textContent = count;
+      document.getElementById("bottomBadge").textContent = count;
     }
 
-    
-    function buyNow(name){
+    const cartSuccessModal = document.getElementById("cartSuccessModal");
+    const cartSuccessProduct = document.getElementById("cartSuccessProduct");
+    const continueShoppingButton = document.getElementById("continueShoppingButton");
 
-  const cards = document.querySelectorAll(".card");
-
-  let selectedCard = null;
-
-  cards.forEach(card => {
-
-    const nameEl = card.querySelector(".name");
-
-    if (
-      nameEl &&
-      nameEl.textContent.trim() === name.trim()
-    ) {
-      selectedCard = card;
+    function showCartSuccess(productName){
+      cartSuccessProduct.textContent = productName;
+      cartSuccessModal.hidden = false;
+      document.body.style.overflow = "hidden";
+      continueShoppingButton.focus();
     }
 
-  });
+    function hideCartSuccess(){
+      cartSuccessModal.hidden = true;
+      document.body.style.overflow = "";
+    }
+
+    continueShoppingButton.addEventListener("click", hideCartSuccess);
+    cartSuccessModal.addEventListener("click", event => {
+      if(event.target === cartSuccessModal) hideCartSuccess();
+    });
+    document.addEventListener("keydown", event => {
+      if(event.key === "Escape" && !cartSuccessModal.hidden) hideCartSuccess();
+    });
+
+    function addToCart(id){
+      const product = products.find(item => item.id === id);
+      if(!product) return;
+
+      const cart = JSON.parse(localStorage.getItem("roxxx_cart") || "[]");
+      const existing = cart.find(
+        item => Number(item.id) === product.id || item.name === product.name
+      );
+      const cartProduct = {
+        id: product.id,
+        name: product.name,
+        image: product.image,
+        price: product.price,
+        oldPrice: product.oldPrice,
+        productType: product.productType,
+        free: product.free === true,
+        offerAvailable: product.offerAvailable !== false,
+        downloadUrl: product.downloadUrl || ""
+      };
+
+      if(existing){
+        Object.assign(existing, cartProduct, {
+          quantity: Number(existing.quantity || 0) + 1
+        });
+      }else{
+        cart.push({...cartProduct, quantity: 1});
+      }
+
+      localStorage.setItem("roxxx_cart", JSON.stringify(cart));
+      updateCartBadges();
+      showCartSuccess(product.name);
+    }
+
+    updateCartBadges();
 
 
-  if (!selectedCard) {
+    function buyNow(id){
+
+  const product = products.find(
+    item => item.id === id
+  );
+
+  if(!product){
     alert("Product not found.");
     return;
   }
 
-
-  const imageEl =
-    selectedCard.querySelector(".product-img img");
-
-  const currentEl =
-    selectedCard.querySelector(".current");
-
-  const oldEl =
-    selectedCard.querySelector(".old");
-
-const descriptionEl =
-  selectedCard.querySelector(".description");
-
-
-  const product = {
-
-    name: name,
-
-    image: imageEl
-      ? imageEl.src
-      : "",
-
-    price: currentEl
-      ? Number(
-          currentEl.textContent
-            .replace(/[^\d.]/g, "")
-        )
-      : 0,
-
-    oldPrice: oldEl
-      ? Number(
-          oldEl.textContent
-            .replace(/[^\d.]/g, "")
-        )
-      : 0,
-      
-      description: descriptionEl
-  ? descriptionEl.textContent.trim()
-  : "",
-
-    quantity: 1
-
-  };
-
-
-  localStorage.setItem(
-    "roxxx_buy_now",
-    JSON.stringify(product)
-  );
-
-
-  window.location.href = "product.html";
+  window.location.href = `product.html?id=${product.id}`;
 }
+
     function openSearch(){alert("Search will be connected later.")}
     function openCart(){window.location.href = "cart.html";}
     function openAccount(){alert("Account will be connected later.")}
- 
+

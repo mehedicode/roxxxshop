@@ -662,3 +662,47 @@ body {
     gap: 12px;
   }
 }
+
+.purchase-offer-banner{margin-bottom:14px;padding:15px;display:grid;gap:5px;border:1px solid #bfdbfe;border-radius:14px;background:linear-gradient(110deg,#eff6ff,#f8fafc)}
+.purchase-offer-banner strong{color:var(--color-primary);font-size:14px}
+.purchase-offer-banner span{font-size:14px;font-weight:800;line-height:1.45}
+.purchase-offer-banner small,.delivery-note{color:var(--color-muted);font-size:12px;line-height:1.5}
+.checkout-items{display:grid;gap:10px;margin-bottom:14px}
+#discountRow[hidden],#doorDeliveryRow[hidden]{display:none}
+.checkout-item{display:flex;align-items:center;gap:11px;padding:9px;border:1px solid var(--color-border);border-radius:11px}
+.checkout-item-image{width:56px;height:56px;flex:0 0 56px;object-fit:cover;border-radius:8px;background:#f1f5f9}
+.checkout-item-info{min-width:0;flex:1;display:grid;gap:4px}
+.checkout-item-name{font-size:13px;font-weight:700;overflow-wrap:anywhere}
+.checkout-item-qty{color:var(--color-muted);font-size:12px}
+.checkout-item-total{white-space:nowrap;font-size:13px}
+.checkout-summary{padding:12px;border-radius:11px;background:#f8fafc}
+.checkout-summary .summary-row{min-height:32px}
+.checkout-summary .summary-row strong{font-size:13px}
+.checkout-summary .delivery-note{margin:7px 0}
+.checkout-summary .total-customer-row{padding-top:8px;border-top:1px solid var(--color-border);color:var(--color-muted);font-size:12px}
+.bkash-heading{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.bkash-heading h2{margin:0 0 3px;font-size:17px}
+.bkash-heading p{margin:0;color:var(--color-muted);font-size:12px}
+.bkash-mark{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:#e2136e;color:#fff;font-size:27px;font-weight:900;font-style:italic}
+.payment-disclosure{margin:0 0 14px;color:var(--color-muted);font-size:12px;line-height:1.55}
+.recipient-box{display:grid;gap:5px;padding:14px;border:1px solid #fbcfe8;border-radius:12px;background:#fff1f7}
+.recipient-box span{color:#831843;font-size:12px;font-weight:700}
+.recipient-box strong{color:#be185d;font-size:20px;letter-spacing:.03em;overflow-wrap:anywhere}
+.send-instructions{padding-left:20px;color:var(--color-dark);font-size:13px;line-height:1.65}
+.send-instructions li{padding-left:3px;margin:5px 0}
+.payment-form{display:grid;gap:9px;margin-top:17px}
+.payment-form>label:not(.terms-check){font-size:13px;font-weight:700}
+.payment-form input:not([type=checkbox]){width:100%;min-height:48px;padding:11px 12px;border:1px solid var(--color-border);border-radius:10px;font:inherit;font-size:15px}
+.terms-check{display:flex;align-items:flex-start;gap:9px;margin:6px 0;color:var(--color-muted);font-size:12px;line-height:1.5}
+.terms-check input{width:18px;height:18px;flex:0 0 18px;margin:1px 0 0;accent-color:var(--color-primary)}
+.place-order-button:disabled{opacity:.55;cursor:not-allowed}
+.payment-success{text-align:center;padding:24px}
+.payment-success[hidden]{display:none}
+.payment-success h2{font-size:19px;line-height:1.4}
+.payment-success .pending-payment-status{display:inline-block;padding:6px 10px;border-radius:999px;background:#fff7ed;color:#9a3412;font-size:12px;font-weight:800}
+.payment-success p{color:var(--color-muted);font-size:13px;line-height:1.6}
+.payment-success .success-icon{display:grid;place-items:center}
+.payment-success .continue-button,.secondary-link{display:flex;align-items:center;justify-content:center;min-height:46px;margin-top:10px;text-decoration:none}
+.payment-success .continue-button{border-radius:10px;background:var(--color-primary);color:#fff;font-weight:800}
+.secondary-link{color:var(--color-primary);font-size:13px;font-weight:700}
+@media(max-width:480px){.checkout-container{padding:12px}.checkout-card{padding:14px}.checkout-item-image{width:48px;height:48px;flex-basis:48px}}

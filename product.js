@@ -1,107 +1,117 @@
+
+
 /* =========================================
-   LOAD PRODUCT
+   LOAD PRODUCT FROM CENTRAL DATA
 ========================================= */
 
-const defaultProduct = {
-  name: "Premium Classic Watch",
-  image:
-    "https://placehold.co/900x900/e2e8f0/0f172a?text=Premium+Classic+Watch",
-  price: 1590,
-  oldPrice: 1990,
-  rating: 4.8,
-  sold: 126,
-  discount: 20,
-  quantity: 1
-};
+const params = new URLSearchParams(
+  window.location.search
+);
 
+const productId = Number(
+  params.get("id")
+);
 
-const savedProduct = localStorage.getItem("roxxx_buy_now");
-
-let product = defaultProduct;
-
-if (savedProduct) {
-  try {
-    const parsedProduct = JSON.parse(savedProduct);
-
-    if (
-      parsedProduct &&
-      parsedProduct.name &&
-      parsedProduct.image &&
-      typeof parsedProduct.price === "number"
-    ) {
-      product = {
-        ...defaultProduct,
-        ...parsedProduct
-      };
-    }
-
-  } catch (error) {
-    console.error("Invalid product data:", error);
-  }
-}
+const product = products.find(
+  item => item.id === productId
+);
 
 
 /* =========================================
    PRODUCT UI
 ========================================= */
 
-const productNameEl =
-  document.getElementById("productName");
+if (!product) {
 
-const productImageEl =
-  document.getElementById("productImage");
+  alert("Product not found.");
 
-const productPriceEl =
-  document.getElementById("currentPrice");
+  window.location.href = "shop.html";
 
-const productOldPriceEl =
-  document.getElementById("oldPrice");
+} else {
+
+  const productNameEl =
+    document.getElementById("productName");
+
+  const productImageEl =
+    document.getElementById("productImage");
+
+  const productPriceEl =
+    document.getElementById("currentPrice");
+
+  const productOldPriceEl =
+    document.getElementById("oldPrice");
 
   const ratingEl =
-  document.getElementById("rating");
+    document.getElementById("rating");
 
-const soldEl =
-  document.getElementById("sold");
+  const soldEl =
+    document.getElementById("sold");
 
-const discountBadgeEl =
-  document.getElementById("discountBadge");
+  const discountBadgeEl =
+    document.getElementById("discountBadge");
 
   const descriptionEl =
-  document.querySelector(".description p");
+    document.querySelector(".description p");
 
-if (productNameEl) {
-  productNameEl.textContent = product.name;
-}
 
-if (productImageEl) {
-  productImageEl.src = product.image;
-  productImageEl.alt = product.name;
-}
+  if (productNameEl) {
+    productNameEl.textContent =
+      product.name;
+  }
 
-if (productPriceEl) {
-  productPriceEl.textContent = `৳${product.price}`;
-}
 
-if (productOldPriceEl) {
-  productOldPriceEl.textContent = `৳${product.oldPrice}`;
-}
+  if (productImageEl) {
+    productImageEl.src =
+      product.image;
 
-if (ratingEl) {
-  ratingEl.textContent = product.rating;
-}
+    productImageEl.alt =
+      product.name;
+  }
 
-if (soldEl) {
-  soldEl.textContent = `${product.sold} sold`;
-}
 
-if (discountBadgeEl) {
-  discountBadgeEl.textContent = `-${product.discount}%`;
-}
+  if (productPriceEl) {
+    productPriceEl.textContent =
+      product.productType === "digital" && product.free
+        ? "FREE"
+        : `৳${Number(product.price).toLocaleString("en-BD")}`;
 
-if (descriptionEl) {
-  descriptionEl.textContent =
-    product.description ||
-    "Product information will be updated soon.";
+    if (product.productType === "digital" && product.free) {
+      productPriceEl.classList.add("free-label");
+    }
+  }
+
+
+  if (productOldPriceEl) {
+    productOldPriceEl.textContent =
+      `৳${Number(product.oldPrice).toLocaleString("en-BD")}`;
+    productOldPriceEl.hidden = product.free === true || product.offerAvailable === false || Number(product.oldPrice) <= Number(product.price);
+  }
+
+
+  if (ratingEl) {
+    ratingEl.textContent =
+      product.rating;
+  }
+
+
+  if (soldEl) {
+    soldEl.textContent =
+      `${product.sold} sold`;
+  }
+
+
+  if (discountBadgeEl) {
+    discountBadgeEl.textContent =
+      `-${product.discount}%`;
+    discountBadgeEl.hidden = product.free === true || product.offerAvailable === false;
+  }
+
+
+  if (descriptionEl) {
+    descriptionEl.textContent =
+      product.description;
+  }
+
 }
 
 /* =========================================
@@ -114,7 +124,7 @@ const quantityEl =
 const toast =
   document.getElementById("toast");
 
-let quantity = Number(product.quantity) || 1;
+let quantity = Number(product && product.quantity) || 1;
 
 
 function updateQuantity() {
@@ -200,7 +210,12 @@ const addCartBtn =
 
 if (addCartBtn) {
 
+  addCartBtn.disabled = product.available === false;
+
   addCartBtn.onclick = () => {
+
+    if(!product) return;
+    if(product.available === false) return;
 
     const cart = JSON.parse(
       localStorage.getItem("roxxx_cart") || "[]"
@@ -208,18 +223,37 @@ if (addCartBtn) {
 
 
     const existing = cart.find(
-      item => item.name === product.name
+      item => Number(item.id) === product.id || item.name === product.name
     );
 
 
     if (existing) {
 
-      existing.quantity += quantity;
+      Object.assign(existing, {
+        id: product.id,
+        name: product.name,
+        image: product.image,
+        price: product.price,
+        oldPrice: product.oldPrice,
+        productType: product.productType,
+        free: product.free === true,
+        offerAvailable: product.offerAvailable !== false,
+        downloadUrl: product.downloadUrl || "",
+        quantity: Number(existing.quantity || 0) + quantity
+      });
 
     } else {
 
       cart.push({
-        ...product,
+        id: product.id,
+        name: product.name,
+        image: product.image,
+        price: product.price,
+        oldPrice: product.oldPrice,
+        productType: product.productType,
+        free: product.free === true,
+        offerAvailable: product.offerAvailable !== false,
+        downloadUrl: product.downloadUrl || "",
         quantity: quantity
       });
 
@@ -251,17 +285,19 @@ const buyNowBtn =
 
 if (buyNowBtn) {
 
+  buyNowBtn.disabled = product.available === false;
+
   buyNowBtn.onclick = () => {
 
-    const buyNowProduct = {
-      ...product,
-      quantity: quantity
-    };
-
+    if(!product) return;
+    if(product.available === false) return;
 
     localStorage.setItem(
       "roxxx_buy_now",
-      JSON.stringify(buyNowProduct)
+      JSON.stringify({
+        id: product.id,
+        quantity: quantity
+      })
     );
 
 

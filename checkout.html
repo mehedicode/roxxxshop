@@ -1,359 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Checkout | roxxx.shop</title>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>bKash Payment | roxxx.shop</title>
   <link rel="stylesheet" href="checkout.css">
 </head>
-
 <body>
-
-  <!-- =========================
-       HEADER
-  ========================== -->
-
   <header class="checkout-header">
-
-    <a href="cart.html" class="back-button" aria-label="Back to cart">
-      ←
-    </a>
-
-    <h1>Checkout</h1>
-
+    <a href="cart.html" class="back-button" aria-label="Back to cart">←</a>
+    <h1>Secure your order</h1>
     <div class="header-spacer"></div>
-
   </header>
 
-
-  <!-- =========================
-       MAIN
-  ========================== -->
-
   <main class="checkout-container">
+    <aside class="purchase-offer-banner">
+      <strong>Special Offer</strong>
+      <span>Shop for ৳2,000 or more and get 20% OFF + FREE DELIVERY</span>
+      <small>For orders below ৳2,000, no discount applies. A ৳60 delivery charge is paid separately to the delivery person.</small>
+    </aside>
 
-    <!-- =========================
-         DELIVERY INFORMATION
-    ========================== -->
-
-    <section class="checkout-card">
-
+    <section id="paymentContent" class="checkout-card">
       <div class="section-heading">
-        <div class="section-number">1</div>
-
-        <div>
-          <h2>Delivery Information</h2>
-          <p>Where should we deliver your order?</p>
-        </div>
+        <span class="section-number">1</span>
+        <div><h2>Order Summary</h2><p id="orderTypeNote">Review the products and amount for this order.</p></div>
       </div>
-
-
-      <form id="checkoutForm">
-
-        <div class="form-group">
-
-          <label for="customerName">
-            Full Name
-          </label>
-
-          <input
-            type="text"
-            id="customerName"
-            name="customerName"
-            placeholder="Enter your full name"
-            autocomplete="name"
-            required
-          >
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label for="phone">
-            Phone Number
-          </label>
-
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            inputmode="numeric"
-            maxlength="11"
-            placeholder="01XXXXXXXXX"
-            autocomplete="tel"
-            required
-          >
-
-          <small>
-            Enter an 11-digit Bangladeshi mobile number.
-          </small>
-
-        </div>
-
-
-        <div class="address-grid">
-
-          <div class="form-group">
-
-            <label for="district">
-              District
-            </label>
-
-            <select id="district" name="district" required>
-
-              <option value="">
-                Select district
-              </option>
-
-              <option>Dhaka</option>
-              <option>Chattogram</option>
-              <option>Rajshahi</option>
-              <option>Khulna</option>
-              <option>Barishal</option>
-              <option>Sylhet</option>
-              <option>Rangpur</option>
-              <option>Mymensingh</option>
-
-            </select>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="thana">
-              Thana / Upazila
-            </label>
-
-            <input
-              type="text"
-              id="thana"
-              name="thana"
-              placeholder="Enter thana / upazila"
-              required
-            >
-
-          </div>
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label for="areaAddress">
-            Area / Full Address
-          </label>
-
-          <textarea
-            id="areaAddress"
-            name="areaAddress"
-            rows="3"
-            placeholder="House, road, village, area, landmark..."
-            required
-          ></textarea>
-
-        </div>
-
-      </form>
-
-    </section>
-
-
-    <!-- =========================
-         PAYMENT METHOD
-    ========================== -->
-
-    <section class="checkout-card">
-
-      <div class="section-heading">
-
-        <div class="section-number">2</div>
-
-        <div>
-          <h2>Payment Method</h2>
-          <p>Select how you want to pay.</p>
-        </div>
-
-      </div>
-
-
-      <div class="payment-options">
-
-        <label class="payment-option">
-
-          <input
-            type="radio"
-            name="paymentMethod"
-            value="cod"
-            checked
-          >
-
-          <div class="payment-content">
-
-            <div class="payment-icon">
-              🚚
-            </div>
-
-            <div>
-              <strong>Cash on Delivery</strong>
-              <span>Pay when you receive your order.</span>
-            </div>
-
-          </div>
-
-          <span class="radio-mark"></span>
-
-        </label>
-
-
-        <label class="payment-option">
-
-          <input
-            type="radio"
-            name="paymentMethod"
-            value="bkash"
-          >
-
-          <div class="payment-content">
-
-            <div class="payment-icon">
-              ৳
-            </div>
-
-            <div>
-              <strong>bKash</strong>
-              <span>Pay online using bKash.</span>
-            </div>
-
-          </div>
-
-          <span class="radio-mark"></span>
-
-        </label>
-
-      </div>
-
-
-      <!-- bKash information will appear when selected -->
-
-      <div id="bkashInfo" class="bkash-info hidden">
-
-        <strong>bKash payment</strong>
-
-        <p>
-          bKash payment verification will be connected here later.
-        </p>
-
-        <div class="bkash-demo-number">
-          bKash Number: <strong>01XXXXXXXXX</strong>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         ORDER SUMMARY
-    ========================== -->
-
-    <section class="checkout-card">
-
-      <div class="section-heading">
-
-        <div class="section-number">3</div>
-
-        <div>
-          <h2>Order Summary</h2>
-          <p>Review your order before placing it.</p>
-        </div>
-
-      </div>
-
-
       <div id="checkoutItems" class="checkout-items"></div>
-
-
       <div class="checkout-summary">
-
-        <div class="summary-row">
-          <span>Subtotal</span>
-          <strong id="subtotal">৳0</strong>
-        </div>
-
-        <div class="summary-row">
-          <span>Delivery</span>
-          <strong id="delivery">৳0</strong>
-        </div>
-
+        <div class="summary-row"><span>Product subtotal</span><strong id="subtotal"></strong></div>
+        <div id="discountRow" class="summary-row"><span>20% discount</span><strong id="discount"></strong></div>
+        <div class="summary-row"><span>Delivery paid online</span><strong id="deliveryOnline"></strong></div>
+        <p id="deliveryNote" class="delivery-note"></p>
+        <div id="doorDeliveryRow" class="summary-row"><span>Paid separately to delivery person</span><strong id="deliveryAtDoor"></strong></div>
         <div class="summary-divider"></div>
-
-        <div class="summary-row total-row">
-          <span>Total</span>
-          <strong id="total">৳0</strong>
-        </div>
-
+        <div class="summary-row total-row"><span>Exact amount to send online</span><strong id="total"></strong></div>
+        <div class="summary-row total-customer-row"><span>Total including separate delivery</span><strong id="customerTotal"></strong></div>
       </div>
-
-
-      <button
-        type="button"
-        id="placeOrderBtn"
-        class="place-order-button"
-      >
-        Place Order
-      </button>
-
-      <p class="secure-note">
-        🔒 Your order information is securely handled.
-      </p>
-
     </section>
 
+    <section id="paymentInstructions" class="checkout-card bkash-card">
+      <div class="bkash-heading"><span class="bkash-mark">b</span><div><h2>bKash Manual Payment</h2><p>Pay using Send Money in your bKash app.</p></div></div>
+      <p class="payment-disclosure">This is roxxx.shop’s manual payment instruction page, not an official bKash hosted checkout. A moderator will verify submitted payment details.</p>
+      <div class="recipient-box"><span>Our bKash personal number</span><strong id="merchantBkashNumber">Not configured</strong></div>
+      <ol class="send-instructions">
+        <li>Open your bKash app and choose <strong>Send Money</strong>.</li>
+        <li>Send the exact amount shown above to our personal number.</li>
+        <li>Enter the bKash number you sent from and the transaction ID below.</li>
+      </ol>
+
+      <form id="paymentForm" class="payment-form">
+        <label for="senderBkashNumber">Your bKash Number</label>
+        <input id="senderBkashNumber" name="senderBkashNumber" type="tel" inputmode="numeric" maxlength="11" placeholder="01XXXXXXXXX" autocomplete="tel" required>
+        <label for="transactionId">Transaction / TrxID</label>
+        <input id="transactionId" name="transactionId" type="text" autocomplete="off" maxlength="32" placeholder="Enter the TrxID from your receipt" required>
+        <label class="terms-check"><input id="termsAccepted" type="checkbox" required><span>I confirm that I sent the displayed amount and the payment information is correct.</span></label>
+        <button id="confirmPaymentButton" class="place-order-button" type="submit">Confirm Payment</button>
+      </form>
+      <p class="secure-note">Payment status remains pending until a moderator verifies it. No automatic verification is performed.</p>
+    </section>
+
+    <section id="paymentSuccess" class="checkout-card payment-success" hidden>
+      <div class="success-icon" aria-hidden="true">✓</div>
+      <h2>Payment information submitted successfully.</h2>
+      <p>Your payment will be manually verified by our moderator and we will contact you after verification.</p>
+      <p class="pending-payment-status">Payment verification pending</p>
+      <p>Thank you for your order.</p>
+      <p class="demo-order-id">Order reference: <strong id="orderId"></strong></p>
+      <a class="continue-button" href="my-products.html">Go to My Products</a>
+      <a class="secondary-link" href="index.html">Continue Shopping</a>
+    </section>
   </main>
 
-
-  <!-- =========================
-       SUCCESS MODAL
-  ========================== -->
-
-  <div id="successModal" class="modal hidden">
-
-    <div class="modal-box">
-
-      <div class="success-icon">
-        ✓
-      </div>
-
-      <h2>Order Placed!</h2>
-
-      <p>
-        Your order has been submitted successfully.
-      </p>
-
-      <div class="demo-order-id">
-        Order ID: <strong id="orderId">ROX-000000</strong>
-      </div>
-
-      <button
-        type="button"
-        id="continueShoppingBtn"
-        class="continue-button"
-      >
-        Continue Shopping
-      </button>
-
-    </div>
-
-  </div>
-
-
+  <script src="products.js"></script>
+  <script src="purchase.js"></script>
   <script src="checkout.js"></script>
-
 </body>
 </html>

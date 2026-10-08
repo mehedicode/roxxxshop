@@ -3,122 +3,6 @@
 ========================================= */
 
 
-const products = [
-
-  {
-    id: 1,
-    name: "Premium Classic Watch",
-    category: "watch",
-    image: "https://placehold.co/700x700/e2e8f0/0f172a?text=Classic+Watch",
-    price: 1590,
-    oldPrice: 1990,
-    discount: 20,
-    rating: 4.8,
-    sold: 128,
-    newest: 5,
-    description: "A premium classic watch with an elegant design, suitable for everyday wear and special occasions."
-  },
-
-  {
-    id: 2,
-    name: "Elegant Premium Watch",
-    category: "watch",
-    image: "https://placehold.co/700x700/dbeafe/0f172a?text=Premium+Watch",
-    price: 1890,
-    oldPrice: 2290,
-    discount: 17,
-    rating: 4.7,
-    sold: 96,
-    newest: 4,
-    description: "An elegant premium watch designed with a refined look for everyday style and special occasions."
-  },
-
-  {
-    id: 3,
-    name: "Classic Leather Watch",
-    category: "watch",
-    image: "https://placehold.co/700x700/f1f5f9/0f172a?text=Leather+Watch",
-    price: 1490,
-    oldPrice: 1790,
-    discount: 17,
-    rating: 4.6,
-    sold: 84,
-    newest: 3,
-    description: "A classic leather watch featuring a timeless design and comfortable style for daily use."
-  },
-
-  {
-    id: 4,
-    name: "Premium Dark Chocolate",
-    category: "chocolate",
-    image: "https://placehold.co/700x700/fef3c7/0f172a?text=Dark+Chocolate",
-    price: 590,
-    oldPrice: 690,
-    discount: 14,
-    rating: 4.8,
-    sold: 215,
-    newest: 6,
-    description: "Premium dark chocolate with a rich taste, carefully selected for chocolate lovers."
-  },
-
-  {
-    id: 5,
-    name: "Luxury Chocolate Gift Box",
-    category: "chocolate",
-    image: "https://placehold.co/700x700/fce7f3/0f172a?text=Chocolate+Gift",
-    price: 890,
-    oldPrice: 1090,
-    discount: 18,
-    rating: 4.7,
-    sold: 167,
-    newest: 7,
-    description: "A luxurious chocolate gift box made for special occasions, celebrations and thoughtful gifting."
-  },
-
-  {
-    id: 6,
-    name: "Premium Digital Book",
-    category: "book",
-    image: "https://placehold.co/700x700/e0f2fe/0f172a?text=Digital+Book",
-    price: 490,
-    oldPrice: 690,
-    discount: 29,
-    rating: 4.9,
-    sold: 302,
-    newest: 8,
-    description: "A premium digital book with useful and engaging content, delivered instantly after purchase."
-  },
-
-  {
-    id: 7,
-    name: "Special Selection Watch",
-    category: "watch",
-    image: "https://placehold.co/700x700/ede9fe/0f172a?text=Special+Watch",
-    price: 1680,
-    oldPrice: 2000,
-    discount: 16,
-    rating: 4.6,
-    sold: 64,
-    newest: 2,
-    description: "A specially selected watch combining a stylish appearance with a premium everyday look."
-  },
-
-  {
-    id: 8,
-    name: "Premium Gift Collection",
-    category: "chocolate",
-    image: "https://placehold.co/700x700/fef2f2/0f172a?text=Gift+Collection",
-    price: 1290,
-    oldPrice: 1590,
-    discount: 19,
-    rating: 4.5,
-    sold: 53,
-    newest: 1,
-    description: "A premium gift collection featuring carefully selected items, perfect for gifting and special moments."
-  }
-
-];
-
 
 const productGrid = document.getElementById("productGrid");
 const productCount = document.getElementById("productCount");
@@ -196,9 +80,7 @@ function renderProducts(list){
           alt="${product.name}"
         >
 
-        <span class="discount">
-          -${product.discount}%
-        </span>
+        ${product.offerAvailable !== false && !product.free ? `<span class="discount">-${product.discount}%</span>` : ""}
 
       </div>
 
@@ -226,15 +108,10 @@ function renderProducts(list){
 
 
         <div class="price-row">
-
-          <span class="current-price">
-            ৳ ${product.price.toLocaleString("en-BD")}
+          <span class="current-price ${product.free && product.productType === "digital" ? "free-label" : ""}">
+            ${product.free && product.productType === "digital" ? "FREE" : `৳ ${product.price.toLocaleString("en-BD")}`}
           </span>
-
-          <span class="old-price">
-            ৳ ${product.oldPrice.toLocaleString("en-BD")}
-          </span>
-
+          ${!product.free && product.offerAvailable !== false && Number(product.oldPrice) > Number(product.price) ? `<span class="old-price">৳ ${product.oldPrice.toLocaleString("en-BD")}</span>` : ""}
         </div>
 
 
@@ -243,6 +120,7 @@ function renderProducts(list){
           <button
             class="buy-button"
             type="button"
+            ${product.available === false ? "disabled" : ""}
             onclick="buyProduct(${product.id})"
           >
             Details
@@ -251,6 +129,7 @@ function renderProducts(list){
           <button
             class="cart-button"
             type="button"
+            ${product.available === false ? "disabled" : ""}
             onclick="addProductToCart(${product.id})"
             aria-label="Add to cart"
           >
@@ -345,6 +224,8 @@ function addProductToCart(id){
 
   if(!product) return;
 
+  if(product.available === false) return;
+
 
   const cart = JSON.parse(
     localStorage.getItem("roxxx_cart") || "[]"
@@ -352,21 +233,28 @@ function addProductToCart(id){
 
 
   const existing = cart.find(
-    item => item.name === product.name
+    item => Number(item.id) === product.id || item.name === product.name
   );
 
 
   const cartProduct = {
+    id: product.id,
     name: product.name,
     image: product.image,
     price: product.price,
-    oldPrice: product.oldPrice
+    oldPrice: product.oldPrice,
+    productType: product.productType,
+    free: product.free === true,
+    offerAvailable: product.offerAvailable !== false,
+    downloadUrl: product.downloadUrl || ""
   };
 
 
   if(existing){
 
-    existing.quantity += 1;
+    Object.assign(existing, cartProduct, {
+      quantity: Number(existing.quantity || 0) + 1
+    });
 
   }else{
 
@@ -379,12 +267,13 @@ function addProductToCart(id){
 
 
   localStorage.setItem(
-    "roxxx_cart",
-    JSON.stringify(cart)
-  );
+  "roxxx_cart",
+  JSON.stringify(cart)
+);
 
+updateCartBadge();
 
-  updateCartBadge();
+alert(`${product.name} added to cart!`);
 
 }
 
@@ -392,7 +281,6 @@ function addProductToCart(id){
 /* =========================================
    BUY NOW
 ========================================= */
-
 function buyProduct(id){
 
   const product = products.find(
@@ -401,24 +289,7 @@ function buyProduct(id){
 
   if(!product) return;
 
-
-  localStorage.setItem(
-    "roxxx_buy_now",
-    JSON.stringify({
-      name: product.name,
-      image: product.image,
-      price: product.price,
-      oldPrice: product.oldPrice,
-      rating: product.rating,
-      sold: product.sold,
-      discount: product.discount,
-      description: product.description,
-      quantity: 1
-    })
-  );
-
-
-  window.location.href = "product.html";
+  window.location.href = `product.html?id=${product.id}`;
 
 }
 

@@ -72,9 +72,46 @@
   </header>
 
 
-  <!-- MAIN -->
+  <main id="deliveryCheckout" class="container mx-auto px-4 md:px-6 pb-10 delivery-checkout" hidden>
+    <section class="delivery-intro">
+      <div class="intro-icon" aria-hidden="true">1</div>
+      <div>
+        <h1 class="text-[23px] font-extrabold text-brand-dark">Delivery Information</h1>
+        <p class="mt-2 text-[13px] leading-5 text-brand-muted">Add the address for your physical items. Payment is the next step.</p>
+      </div>
+    </section>
 
-  <main class="container mx-auto px-4 md:px-6 pb-10">
+    <aside class="purchase-offer-banner">
+      <strong>Special Offer</strong>
+      <span>Shop for ৳2,000 or more and get 20% OFF + FREE DELIVERY</span>
+      <small>For orders below ৳2,000, no discount applies. A ৳60 delivery charge is paid separately to the delivery person.</small>
+    </aside>
+
+    <form id="deliveryForm" class="delivery-form-card">
+      <label>Full Name<input id="deliveryName" name="name" autocomplete="name" required></label>
+      <label>Bangladesh Mobile Number<input id="deliveryPhone" name="phone" type="tel" inputmode="numeric" maxlength="11" placeholder="01XXXXXXXXX" autocomplete="tel" required></label>
+      <label>District<input id="deliveryDistrict" name="district" autocomplete="address-level1" required></label>
+      <label>Thana<input id="deliveryThana" name="thana" required></label>
+      <label>Full Receive Address<textarea id="deliveryAddress" name="address" rows="3" autocomplete="street-address" required></textarea></label>
+
+      <section class="delivery-checkout-summary" aria-label="Order summary">
+        <h2>Order Summary</h2>
+        <div><span>Product subtotal</span><strong id="deliverySubtotal"></strong></div>
+        <div><span>Discount</span><strong id="deliveryDiscount"></strong></div>
+        <div><span>Delivery paid online</span><strong>৳0</strong></div>
+        <div id="deliveryDoorSummaryRow"><span>Delivery paid separately</span><strong id="deliveryDoorAmount"></strong></div>
+        <p id="deliveryOfferNote"></p>
+        <div class="delivery-total"><span>Amount to pay online</span><strong id="deliveryPayable"></strong></div>
+        <div class="delivery-customer-total"><span>Total including separate delivery</span><strong id="deliveryCustomerTotal"></strong></div>
+      </section>
+
+      <button class="delivery-continue-button" type="submit">Continue to Payment</button>
+    </form>
+  </main>
+
+  <!-- Delivery information page (standard navigation) -->
+
+  <main id="deliveryInformation" class="container mx-auto px-4 md:px-6 pb-10">
 
     <!-- INTRO -->
 
@@ -126,8 +163,8 @@
         <div class="charge-row">
 
           <div>
-            <h3>Standard Delivery</h3>
-            <p>For regular physical product orders</p>
+            <h3>Delivery paid at the door</h3>
+            <p>Only for eligible orders below ৳2,000</p>
           </div>
 
           <strong>৳ 60</strong>
@@ -135,7 +172,7 @@
         </div>
 
         <div class="charge-note">
-          Delivery charge is currently fixed at ৳60 for standard delivery.
+          Pay ৳60 separately to the delivery person for orders below ৳2,000. Orders of ৳2,000 or more receive free delivery; the delivery charge is covered by us. No delivery charge is added to online payment.
         </div>
 
       </div>
@@ -261,7 +298,7 @@
 
           <span>01</span>
 
-          <h3>Place Order</h3>
+          <h3>Continue to Payment</h3>
 
           <p>
             Select your product and complete checkout.
@@ -362,7 +399,7 @@
         </button>
 
         <div class="faq-answer">
-          Standard delivery charge is currently ৳60.
+          Orders below ৳2,000 have a ৳60 delivery charge paid separately to the delivery person. Orders of ৳2,000 or more get free delivery. Delivery is never added to the online bKash amount.
         </div>
 
 
@@ -513,6 +550,8 @@
   </nav>
 
 
+  <script src="products.js"></script>
+  <script src="purchase.js"></script>
   <script src="delivery.js"></script>
 
 </body>

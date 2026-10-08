@@ -162,6 +162,37 @@ body {
   text-decoration: line-through;
 }
 
+.free-label {
+  color: #15803d;
+  font-weight: 800;
+}
+
+.cart-line-total {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-dark);
+  white-space: nowrap;
+}
+
+.offer-banner {
+  margin-bottom: 16px;
+  padding: 15px 16px;
+  display: grid;
+  gap: 5px;
+  border: 1px solid #bfdbfe;
+  border-radius: 14px;
+  background: linear-gradient(110deg, #eff6ff, #f8fafc);
+}
+
+.offer-banner strong { color: var(--color-primary); font-size: 14px; }
+.offer-banner span { color: var(--color-dark); font-size: 14px; font-weight: 800; line-height: 1.45; }
+.offer-banner small,.delivery-note { color: var(--color-muted); font-size: 12px; line-height: 1.5; }
+.delivery-note { margin: 8px 0; }
+#discountRow[hidden],#deliveryAtDoorRow[hidden]{display:none}
+#cartAvailabilityNote[hidden]{display:none}
+.checkout-button:disabled{opacity:.5;cursor:not-allowed}
+.total-customer-row{padding-top:7px;border-top:1px solid var(--color-border);font-size:12px}
+
 
 /* =========================
    ITEM BOTTOM

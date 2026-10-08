@@ -615,3 +615,14 @@ body{
   }
 
 }
+
+.shop-offer-banner{
+  margin-bottom:18px;padding:15px 17px;display:grid;gap:5px;
+  border:1px solid #bfdbfe;border-radius:15px;
+  background:linear-gradient(110deg,#eff6ff,#f8fafc)
+}
+.shop-offer-banner strong{color:var(--color-primary);font-size:14px}
+.shop-offer-banner span{color:var(--color-dark);font-size:14px;font-weight:800;line-height:1.45}
+.shop-offer-banner small{color:var(--color-muted);font-size:12px;line-height:1.5}
+.current-price.free-label{color:#15803d}
+.buy-button:disabled,.cart-button:disabled{opacity:.5;cursor:not-allowed}

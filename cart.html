@@ -34,6 +34,12 @@
 
   <main class="cart-container">
 
+    <aside class="offer-banner">
+      <strong>Special Offer</strong>
+      <span>Shop for ৳2,000 or more and get 20% OFF + FREE DELIVERY</span>
+      <small>For orders below ৳2,000, no discount applies. A ৳60 delivery charge is paid separately to the delivery person.</small>
+    </aside>
+
     <!-- Cart items will be inserted here by cart.js -->
     <section id="cartItems" class="cart-items"></section>
 
@@ -51,17 +57,36 @@
         <span id="subtotal">৳0</span>
       </div>
 
-      <div class="summary-row">
-        <span>Delivery</span>
-        <span id="delivery">৳60</span>
+      <div id="discountRow" class="summary-row" hidden>
+        <span>Discount</span>
+        <span id="discount">-৳0</span>
       </div>
+
+      <div class="summary-row">
+        <span>Delivery paid online</span>
+        <span id="delivery">৳0</span>
+      </div>
+
+      <div id="deliveryAtDoorRow" class="summary-row" hidden>
+        <span>Delivery paid separately to delivery person</span>
+        <span id="deliveryAtDoor">৳0</span>
+      </div>
+
+      <p id="deliveryNote" class="delivery-note"></p>
 
       <div class="summary-divider"></div>
 
       <div class="summary-row total-row">
-        <span>Total</span>
+        <span>Amount to pay online</span>
         <span id="total">৳0</span>
       </div>
+
+      <div class="summary-row total-customer-row">
+        <span>Total including separate delivery</span>
+        <span id="customerTotal">৳0</span>
+      </div>
+
+      <p id="cartAvailabilityNote" class="delivery-note" hidden>One or more products are no longer available. Remove them to continue.</p>
 
       <button id="checkoutBtn" class="checkout-button">
         Proceed to Checkout
@@ -211,6 +236,8 @@
        JAVASCRIPT
   ========================== -->
 
+  <script src="products.js"></script>
+  <script src="purchase.js"></script>
   <script src="cart.js"></script>
 
 </body>

@@ -1,406 +1,137 @@
-// ===============================
-// ROXXX.SHOP CART
-// ===============================
-
 const cartItemsEl = document.getElementById("cartItems");
 const orderSummaryEl = document.getElementById("orderSummary");
 const emptyCartEl = document.getElementById("emptyCart");
-
 const subtotalEl = document.getElementById("subtotal");
+const discountRowEl = document.getElementById("discountRow");
+const discountEl = document.getElementById("discount");
 const deliveryEl = document.getElementById("delivery");
+const deliveryAtDoorRow = document.getElementById("deliveryAtDoorRow");
+const deliveryAtDoorEl = document.getElementById("deliveryAtDoor");
+const deliveryNoteEl = document.getElementById("deliveryNote");
 const totalEl = document.getElementById("total");
-
+const customerTotalEl = document.getElementById("customerTotal");
 const checkoutBtn = document.getElementById("checkoutBtn");
+const cartAvailabilityNote = document.getElementById("cartAvailabilityNote");
 
-
-// ===============================
-// DELIVERY CHARGE
-// ===============================
-
-const DELIVERY_CHARGE = 60;
-
-
-// ===============================
-// GET CART
-// ===============================
-
-function getCart() {
-
-  let cart = [];
-
-  try {
-    cart = JSON.parse(
-      localStorage.getItem("roxxx_cart") || "[]"
-    );
-  } catch (error) {
-    cart = [];
-  }
-
-  // Remove invalid/old cart items
-  cart = cart.filter(item => {
-
-    return (
-      item &&
-      typeof item.name === "string" &&
-      item.name.trim() !== "" &&
-      typeof item.image === "string" &&
-      item.image.trim() !== "" &&
-      Number.isFinite(Number(item.price)) &&
-      Number(item.price) >= 0 &&
-      Number.isFinite(Number(item.quantity)) &&
-      Number(item.quantity) > 0
-    );
-
-  });
-
-  // Save cleaned cart
-  localStorage.setItem(
-    "roxxx_cart",
-    JSON.stringify(cart)
-  );
-
-  return cart;
-}
-
-
-// ===============================
-// SAVE CART
-// ===============================
-
-function saveCart(cart) {
-
-  localStorage.setItem(
-    "roxxx_cart",
-    JSON.stringify(cart)
-  );
-
-}
-
-
-// ===============================
-// FORMAT PRICE
-// ===============================
-
-function formatPrice(price) {
-
-  return `৳${Number(price).toLocaleString("en-BD")}`;
-
-}
-
-
-// ===============================
-// RENDER CART
-// ===============================
+const purchase = window.RoxxxPurchase;
+const formatPrice = purchase.formatPrice;
 
 function renderCart() {
-
-  const cart = getCart();
-
+  const cart = purchase.getCart();
+  const totals = purchase.calculate(cart);
+  const hasUnavailable = cart.some(item => !item.available);
+  checkoutBtn.disabled = hasUnavailable;
+  cartAvailabilityNote.hidden = !hasUnavailable;
   cartItemsEl.innerHTML = "";
 
-
-  // ===============================
-  // EMPTY CART
-  // ===============================
-
   if (cart.length === 0) {
-
     orderSummaryEl.style.display = "none";
-
     emptyCartEl.classList.remove("hidden");
-
     return;
   }
-
 
   orderSummaryEl.style.display = "block";
-
   emptyCartEl.classList.add("hidden");
 
-
-  // ===============================
-  // CART ITEMS
-  // ===============================
-
   cart.forEach((item, index) => {
+    const article = document.createElement("article");
+    article.className = "cart-item";
 
-    const price = Number(item.price);
+    const image = document.createElement("img");
+    image.className = "cart-item-image";
+    image.src = item.image;
+    image.alt = item.name;
 
-    const quantity = Number(item.quantity);
+    const info = document.createElement("div");
+    info.className = "cart-item-info";
 
-    const itemTotal = price * quantity;
+    const name = document.createElement("h3");
+    name.className = "cart-item-name";
+    name.textContent = item.name;
 
+    const price = document.createElement("p");
+    price.className = "cart-item-price";
+    if (item.free) {
+      price.textContent = "FREE";
+      price.classList.add("free-label");
+    } else {
+      price.textContent = formatPrice(item.price);
+      if (item.offerAvailable && item.oldPrice > item.price) {
+        const oldPrice = document.createElement("span");
+        oldPrice.className = "cart-item-old-price";
+        oldPrice.textContent = formatPrice(item.oldPrice);
+        price.appendChild(oldPrice);
+      }
+    }
 
-    const cartItem = document.createElement("article");
-
-    cartItem.className = "cart-item";
-
-
-    cartItem.innerHTML = `
-
-      <img
-        class="cart-item-image"
-        src="${item.image}"
-        alt="${item.name}"
-      >
-
-
-      <div class="cart-item-info">
-
-        <h3 class="cart-item-name">
-          ${item.name}
-        </h3>
-
-
-        <p class="cart-item-price">
-
-          ${formatPrice(price)}
-
-          ${
-            item.oldPrice &&
-            Number.isFinite(Number(item.oldPrice))
-              ? `
-                <span class="cart-item-old-price">
-                  ${formatPrice(item.oldPrice)}
-                </span>
-              `
-              : ""
-          }
-
-        </p>
-
-
-        <div class="cart-item-bottom">
-
-
-          <!-- Quantity -->
-
-          <div class="quantity-control">
-
-            <button
-              type="button"
-              onclick="decreaseQuantity(${index})"
-              aria-label="Decrease quantity"
-            >
-              −
-            </button>
-
-
-            <span class="quantity-number">
-              ${quantity}
-            </span>
-
-
-            <button
-              type="button"
-              onclick="increaseQuantity(${index})"
-              aria-label="Increase quantity"
-            >
-              +
-            </button>
-
-          </div>
-
-
-          <!-- Item Total -->
-
-          <span
-            style="
-              font-size: 13px;
-              font-weight: 700;
-              color: #0f172a;
-            "
-          >
-            ${formatPrice(itemTotal)}
-          </span>
-
-
-          <!-- Remove -->
-
-          <button
-            type="button"
-            class="remove-button"
-            onclick="removeItem(${index})"
-          >
-            Remove
-          </button>
-
-
-        </div>
-
+    const controls = document.createElement("div");
+    controls.className = "cart-item-bottom";
+    controls.innerHTML = `
+      <div class="quantity-control">
+        <button type="button" onclick="decreaseQuantity(${index})" aria-label="Decrease quantity">−</button>
+        <span class="quantity-number">${item.quantity}</span>
+        <button type="button" onclick="increaseQuantity(${index})" aria-label="Increase quantity">+</button>
       </div>
+      <span class="cart-line-total">${item.free ? "FREE" : formatPrice(item.price * item.quantity)}</span>
+      <button type="button" class="remove-button" onclick="removeItem(${index})">Remove</button>
     `;
 
-
-    cartItemsEl.appendChild(cartItem);
-
+    info.append(name, price, controls);
+    article.append(image, info);
+    cartItemsEl.appendChild(article);
   });
 
-
-  updateSummary(cart);
-
+  subtotalEl.textContent = formatPrice(totals.subtotal);
+  discountRowEl.hidden = totals.discount === 0;
+  discountEl.textContent = `−${formatPrice(totals.discount)}`;
+  deliveryEl.textContent = formatPrice(totals.deliveryOnline);
+  deliveryAtDoorRow.hidden = totals.deliveryAtDoor === 0;
+  deliveryAtDoorEl.textContent = formatPrice(totals.deliveryAtDoor);
+  deliveryNoteEl.textContent = totals.deliveryNote;
+  totalEl.textContent = formatPrice(totals.productPayable);
+  customerTotalEl.textContent = formatPrice(totals.totalCustomerPayable);
 }
 
-
-// ===============================
-// UPDATE SUMMARY
-// ===============================
-
-function updateSummary(cart) {
-
-  const subtotal = cart.reduce(
-    (sum, item) => {
-
-      const price = Number(item.price);
-
-      const quantity = Number(item.quantity);
-
-      return sum + (price * quantity);
-
-    },
-    0
-  );
-
-
-  const delivery =
-    subtotal > 0
-      ? DELIVERY_CHARGE
-      : 0;
-
-
-  const total = subtotal + delivery;
-
-
-  subtotalEl.textContent =
-    formatPrice(subtotal);
-
-
-  deliveryEl.textContent =
-    formatPrice(delivery);
-
-
-  totalEl.textContent =
-    formatPrice(total);
-
+function saveAndRender(cart) {
+  purchase.saveCart(cart);
+  renderCart();
 }
-
-
-// ===============================
-// INCREASE QUANTITY
-// ===============================
 
 function increaseQuantity(index) {
-
-  const cart = getCart();
-
-
-  if (!cart[index]) {
-    return;
-  }
-
-
-  cart[index].quantity =
-    Number(cart[index].quantity) + 1;
-
-
-  saveCart(cart);
-
-  renderCart();
-
+  const cart = purchase.getCart();
+  if (!cart[index]) return;
+  cart[index].quantity += 1;
+  saveAndRender(cart);
 }
-
-
-// ===============================
-// DECREASE QUANTITY
-// ===============================
 
 function decreaseQuantity(index) {
-
-  const cart = getCart();
-
-
-  if (!cart[index]) {
-    return;
-  }
-
-
-  if (Number(cart[index].quantity) > 1) {
-
-    cart[index].quantity =
-      Number(cart[index].quantity) - 1;
-
-  } else {
-
-    cart.splice(index, 1);
-
-  }
-
-
-  saveCart(cart);
-
-  renderCart();
-
+  const cart = purchase.getCart();
+  if (!cart[index]) return;
+  if (cart[index].quantity > 1) cart[index].quantity -= 1;
+  else cart.splice(index, 1);
+  saveAndRender(cart);
 }
-
-
-// ===============================
-// REMOVE ITEM
-// ===============================
 
 function removeItem(index) {
-
-  const cart = getCart();
-
-
-  if (!cart[index]) {
-    return;
-  }
-
-
+  const cart = purchase.getCart();
+  if (!cart[index]) return;
   cart.splice(index, 1);
-
-
-  saveCart(cart);
-
-  renderCart();
-
+  saveAndRender(cart);
 }
-
-
-// ===============================
-// CHECKOUT
-// ===============================
 
 checkoutBtn.addEventListener("click", () => {
+  const cart = purchase.getCart();
+  if (!cart.length || cart.some(item => !item.available)) return;
 
-  const cart = getCart();
-
-
-  if (cart.length === 0) {
-    return;
+  const route = purchase.getCheckoutRoute(cart);
+  if (route === "free-download.html") {
+    localStorage.setItem("roxxx_free_checkout", JSON.stringify({
+      orderId: purchase.createOrderId(),
+      items: cart,
+      createdAt: new Date().toISOString()
+    }));
   }
-
-
-  window.location.href = "checkout.html";
-
+  window.location.href = route;
 });
-
-
-// ===============================
-// BOTTOM NAV DEMO
-// ===============================
-
-function showComingSoon(event) {
-
-  event.preventDefault();
-
-  alert("This section will be connected soon.");
-
-}
-
-
-// ===============================
-// INITIAL LOAD
-// ===============================
 
 renderCart();

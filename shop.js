@@ -15,7 +15,8 @@ const products = [
     discount: 20,
     rating: 4.8,
     sold: 128,
-    newest: 5
+    newest: 5,
+    description: "A premium classic watch with an elegant design, suitable for everyday wear and special occasions."
   },
 
   {
@@ -28,7 +29,8 @@ const products = [
     discount: 17,
     rating: 4.7,
     sold: 96,
-    newest: 4
+    newest: 4,
+    description: "An elegant premium watch designed with a refined look for everyday style and special occasions."
   },
 
   {
@@ -41,7 +43,8 @@ const products = [
     discount: 17,
     rating: 4.6,
     sold: 84,
-    newest: 3
+    newest: 3,
+    description: "A classic leather watch featuring a timeless design and comfortable style for daily use."
   },
 
   {
@@ -54,7 +57,8 @@ const products = [
     discount: 14,
     rating: 4.8,
     sold: 215,
-    newest: 6
+    newest: 6,
+    description: "Premium dark chocolate with a rich taste, carefully selected for chocolate lovers."
   },
 
   {
@@ -67,7 +71,8 @@ const products = [
     discount: 18,
     rating: 4.7,
     sold: 167,
-    newest: 7
+    newest: 7,
+    description: "A luxurious chocolate gift box made for special occasions, celebrations and thoughtful gifting."
   },
 
   {
@@ -80,7 +85,8 @@ const products = [
     discount: 29,
     rating: 4.9,
     sold: 302,
-    newest: 8
+    newest: 8,
+    description: "A premium digital book with useful and engaging content, delivered instantly after purchase."
   },
 
   {
@@ -93,7 +99,8 @@ const products = [
     discount: 16,
     rating: 4.6,
     sold: 64,
-    newest: 2
+    newest: 2,
+    description: "A specially selected watch combining a stylish appearance with a premium everyday look."
   },
 
   {
@@ -106,7 +113,8 @@ const products = [
     discount: 19,
     rating: 4.5,
     sold: 53,
-    newest: 1
+    newest: 1,
+    description: "A premium gift collection featuring carefully selected items, perfect for gifting and special moments."
   }
 
 ];
@@ -237,7 +245,7 @@ function renderProducts(list){
             type="button"
             onclick="buyProduct(${product.id})"
           >
-            Buy Now
+            Details
           </button>
 
           <button
@@ -401,6 +409,10 @@ function buyProduct(id){
       image: product.image,
       price: product.price,
       oldPrice: product.oldPrice,
+      rating: product.rating,
+      sold: product.sold,
+      discount: product.discount,
+      description: product.description,
       quantity: 1
     })
   );
@@ -409,7 +421,6 @@ function buyProduct(id){
   window.location.href = "product.html";
 
 }
-
 
 /* =========================================
    FILTER PANEL

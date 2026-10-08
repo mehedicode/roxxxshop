@@ -91,6 +91,9 @@
   const oldEl =
     selectedCard.querySelector(".old");
 
+const descriptionEl =
+  selectedCard.querySelector(".description");
+
 
   const product = {
 
@@ -113,6 +116,10 @@
             .replace(/[^\d.]/g, "")
         )
       : 0,
+      
+      description: descriptionEl
+  ? descriptionEl.textContent.trim()
+  : "",
 
     quantity: 1
 

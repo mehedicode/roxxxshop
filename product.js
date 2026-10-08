@@ -8,6 +8,9 @@ const defaultProduct = {
     "https://placehold.co/900x900/e2e8f0/0f172a?text=Premium+Classic+Watch",
   price: 1590,
   oldPrice: 1990,
+  rating: 4.8,
+  sold: 126,
+  discount: 20,
   quantity: 1
 };
 
@@ -54,6 +57,17 @@ const productPriceEl =
 const productOldPriceEl =
   document.getElementById("oldPrice");
 
+  const ratingEl =
+  document.getElementById("rating");
+
+const soldEl =
+  document.getElementById("sold");
+
+const discountBadgeEl =
+  document.getElementById("discountBadge");
+
+  const descriptionEl =
+  document.querySelector(".description p");
 
 if (productNameEl) {
   productNameEl.textContent = product.name;
@@ -72,6 +86,23 @@ if (productOldPriceEl) {
   productOldPriceEl.textContent = `৳${product.oldPrice}`;
 }
 
+if (ratingEl) {
+  ratingEl.textContent = product.rating;
+}
+
+if (soldEl) {
+  soldEl.textContent = `${product.sold} sold`;
+}
+
+if (discountBadgeEl) {
+  discountBadgeEl.textContent = `-${product.discount}%`;
+}
+
+if (descriptionEl) {
+  descriptionEl.textContent =
+    product.description ||
+    "Product information will be updated soon.";
+}
 
 /* =========================================
    QUANTITY

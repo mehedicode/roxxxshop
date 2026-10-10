@@ -182,5 +182,5 @@
 }
 
     function openCart(){window.location.href = "cart.html";}
-    function openAccount(){alert("Account will be connected later.")}
+    function openAccount(){window.location.href = "account.html";}
 

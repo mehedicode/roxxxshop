@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>FAQ - roxxx.shop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { brand: {
+        bg: "var(--color-bg)", dark: "var(--color-dark)", primary: "var(--color-primary)",
+        hover: "var(--color-primary-hover)", accent: "var(--color-accent)",
+        text: "var(--color-text)", muted: "var(--color-muted)", border: "var(--color-border)"
+      } } } }
+    };
+  </script>
+  <link rel="stylesheet" href="info.css">
+</head>
+<body>
+
+  <header class="bg-white border-b border-brand-border">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="h-[68px] md:h-[76px] flex items-center justify-between">
+        <a href="index.html" class="text-[22px] md:text-[25px] font-extrabold tracking-tight text-brand-dark">
+          roxxx<span class="text-brand-primary">.shop</span>
+        </a>
+        <a href="index.html" class="w-11 h-11 rounded-full flex items-center justify-center text-brand-dark" aria-label="Back to home">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m15 18-6-6 6-6"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 md:px-6 pb-10">
+
+    <section class="info-intro">
+      <div class="intro-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M9.5 9a2.5 2.5 0 1 1 4.3 1.7c-1.2 1.1-1.8 1.4-1.8 3"/>
+          <path d="M12 17h.01"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-[23px] font-extrabold text-brand-dark">Frequently Asked Questions</h1>
+        <p class="mt-2 text-[13px] leading-5 text-brand-muted">
+          Find answers to common questions about ordering, delivery, and payments.
+        </p>
+      </div>
+    </section>
+
+    <section class="info-section">
+      <div class="info-card" style="padding:0;overflow:hidden">
+        <button class="faq-item">
+          <span>How do I place an order?</span>
+          <b>+</b>
+        </button>
+        <div class="faq-answer">
+          Browse products on the Shop page, add items to your cart, proceed to checkout, and complete the bKash manual payment steps shown on the payment page.
+        </div>
+
+        <button class="faq-item">
+          <span>What is the delivery charge?</span>
+          <b>+</b>
+        </button>
+        <div class="faq-answer">
+          Orders below ৳2,000 have a ৳60 delivery charge paid separately to the delivery person. Orders of ৳2,000 or more receive free delivery. Delivery is never added to the online bKash payment amount.
+        </div>
+
+        <button class="faq-item">
+          <span>How does the 20% discount work?</span>
+          <b>+</b>
+        </button>
+        <div class="faq-answer">
+          When your product subtotal reaches ৳2,000 or more, a 20% discount is automatically applied. For orders below ৳2,000, no discount applies.
+        </div>
+
+        <button class="faq-item">
+          <span>How is bKash payment handled?</span>
+          <b>+</b>
+        </button>
+        <div class="faq-answer">
+          You send the exact displayed amount using the Send Money option in your bKash app. After sending, enter your bKash number and the transaction ID on the payment page. A moderator manually verifies the payment.
+        </div>
+
+        <button class="faq-item">
+          <span>When will my order be delivered?</span>
+          <b>+</b>
+        </button>
+        <div class="faq-answer">
+          Orders are prepared after confirmation, then dispatched and delivered to your address. Delivery time may vary depending on your location. You can find more details on the Delivery Information page.
+        </div>
+
+        <button class="faq-item">
+          <span>Can I get a digital product immediately?</span>
+          <b>+</b>
+        </div>
+        <div class="faq-answer">
+          Free digital products are available immediately after checkout. Paid digital products become available after payment verification by our moderator.
+        </div>
+
+        <button class="faq-item">
+          <span>What should I do if I need help?</span>
+          <b>+</b>
+        </button>
+        <div class="faq-answer">
+          Use the Customer Support page to send us a message. You can also contact us from the Delivery Information page.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <nav class="bottom">
+    <div class="bottom-inner">
+      <a href="index.html" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/></svg>
+        <span>Home</span>
+      </a>
+      <a href="delivery.html" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v10H3z"/><path d="M14 10h4l3 3v4h-7z"/><circle cx="7" cy="19" r="1.5"/><circle cx="18" cy="19" r="1.5"/></svg>
+        <span>Delivery</span>
+      </a>
+      <a href="cart.html" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1"/><circle cx="19" cy="20" r="1"/><path d="M3 4h2l2.6 11.2a2 2 0 0 0 2 1.55h7.8a2 2 0 0 0 1.9-1.37L21 8H6"/></svg>
+        <span>Cart</span>
+      </a>
+      <a href="index.html" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <span>Search</span>
+      </a>
+      <a href="account.html" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"/></svg>
+        <span>Account</span>
+      </a>
+    </div>
+  </nav>
+
+  <script src="info.js"></script>
+</body>
+</html>

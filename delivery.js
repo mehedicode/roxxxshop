@@ -122,7 +122,7 @@ document.getElementById("deliverySubtotal").textContent = purchase.formatPrice(t
 
     supportBtn.addEventListener("click", () => {
 
-      alert("Customer support will be connected later.");
+      window.location.href = "support.html";
 
     });
 

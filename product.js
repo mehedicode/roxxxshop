@@ -282,16 +282,17 @@ if (addCartBtn) {
 const buyNowBtn =
   document.getElementById("buyNowBtn");
 
-
 if (buyNowBtn) {
 
-  buyNowBtn.disabled = product.available === false;
+  buyNowBtn.disabled =
+    product.available === false;
 
   buyNowBtn.onclick = () => {
 
-    if(!product) return;
-    if(product.available === false) return;
+    if (!product) return;
+    if (product.available === false) return;
 
+    /* Save selected product + quantity */
     localStorage.setItem(
       "roxxx_buy_now",
       JSON.stringify({
@@ -300,9 +301,28 @@ if (buyNowBtn) {
       })
     );
 
+    /* FREE DIGITAL */
+    if (
+      product.productType === "digital" &&
+      product.free === true
+    ) {
+      window.location.href =
+        "free-download.html";
+      return;
+    }
 
-    showToast("Buy Now selected");
+    /* PHYSICAL PRODUCT */
+    if (product.productType === "physical") {
 
+      window.location.href =
+        "delivery.html?checkout=1";
+
+      return;
+    }
+
+    /* PAID DIGITAL */
+    window.location.href =
+      "checkout.html";
   };
 
 }

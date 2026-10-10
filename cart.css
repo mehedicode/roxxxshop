@@ -500,38 +500,7 @@ body {
    TABLET / DESKTOP
 ========================= */
 
-@media (min-width: 768px) {
 
-  body {
-    padding-bottom: 0;
-  }
-
-  .cart-header {
-    padding: 0 24px;
-  }
-
-  .cart-container {
-    padding: 28px 24px 40px;
-  }
-
-  .cart-item {
-    padding: 16px;
-  }
-
-  .cart-item-image {
-    width: 110px;
-    height: 110px;
-  }
-
-  .bottom-nav {
-    display: none;
-  }
-
-  .order-summary {
-    padding: 20px;
-  }
-
-}
 
 /* =========================
    TABLET / DESKTOP

@@ -1,161 +1,183 @@
-/* =========================================
-   ROXXX.SHOP — CENTRAL PRODUCT DATA
-========================================= */
-
 const products = [
-
   {
     id: 1,
     name: "Premium Classic Watch",
-    category: "watch",
-    image: "https://placehold.co/700x700/e2e8f0/0f172a?text=Classic+Watch",
+    image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d",
     price: 1590,
     oldPrice: 1990,
     discount: 20,
     rating: 4.8,
     sold: 128,
-    newest: 5,
     productType: "physical",
     free: false,
     offerAvailable: true,
     available: true,
-    description:
-      "A premium classic watch with an elegant design, suitable for everyday wear and special occasions."
+    description: "A premium classic watch with an elegant design.",
+    downloadUrl: "",
+    downloadLabel: ""
   },
 
   {
     id: 2,
     name: "Elegant Premium Watch",
-    category: "watch",
-    image: "https://placehold.co/700x700/dbeafe/0f172a?text=Premium+Watch",
+    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
     price: 1890,
-    oldPrice: 2290,
-    discount: 17,
-    rating: 4.7,
+    oldPrice: 2390,
+    discount: 21,
+    rating: 4.9,
     sold: 96,
-    newest: 4,
     productType: "physical",
     free: false,
     offerAvailable: true,
     available: true,
-    description:
-      "An elegant premium watch designed with a refined look for everyday style and special occasions."
+    description: "Elegant premium watch suitable for everyday and formal use.",
+    downloadUrl: "",
+    downloadLabel: ""
   },
 
   {
     id: 3,
     name: "Classic Leather Watch",
-    category: "watch",
-    image: "https://placehold.co/700x700/f1f5f9/0f172a?text=Leather+Watch",
+    image: "https://images.unsplash.com/photo-1508057198894-247b23fe5ade",
     price: 1490,
-    oldPrice: 1790,
-    discount: 17,
-    rating: 4.6,
+    oldPrice: 1890,
+    discount: 21,
+    rating: 4.7,
     sold: 84,
-    newest: 3,
     productType: "physical",
     free: false,
     offerAvailable: true,
     available: true,
-    description:
-      "A classic leather watch featuring a timeless design and comfortable style for daily use."
+    description: "Classic leather strap watch with a premium appearance.",
+    downloadUrl: "",
+    downloadLabel: ""
   },
 
   {
     id: 4,
     name: "Premium Dark Chocolate",
-    category: "chocolate",
-    image: "https://placehold.co/700x700/fef3c7/0f172a?text=Dark+Chocolate",
+    image: "https://images.unsplash.com/photo-1575377427642-087cf684f29d",
     price: 590,
     oldPrice: 690,
     discount: 14,
     rating: 4.8,
-    sold: 215,
-    newest: 6,
+    sold: 142,
     productType: "physical",
     free: false,
     offerAvailable: true,
     available: true,
-    description:
-      "Premium dark chocolate with a rich taste, carefully selected for chocolate lovers."
+    description: "Premium dark chocolate made for chocolate lovers.",
+    downloadUrl: "",
+    downloadLabel: ""
   },
 
   {
     id: 5,
     name: "Luxury Chocolate Gift Box",
-    category: "chocolate",
-    image: "https://placehold.co/700x700/fce7f3/0f172a?text=Chocolate+Gift",
+    image: "https://images.unsplash.com/photo-1549007994-cb92caebd54b",
     price: 890,
     oldPrice: 1090,
     discount: 18,
-    rating: 4.7,
-    sold: 167,
-    newest: 7,
+    rating: 4.9,
+    sold: 76,
     productType: "physical",
     free: false,
     offerAvailable: true,
     available: true,
-    description:
-      "A luxurious chocolate gift box made for special occasions, celebrations and thoughtful gifting."
+    description: "A luxury chocolate gift box for special occasions.",
+    downloadUrl: "",
+    downloadLabel: ""
   },
 
   {
     id: 6,
     name: "Premium Digital Book",
-    category: "book",
-    image: "https://placehold.co/700x700/e0f2fe/0f172a?text=Digital+Book",
+    image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f",
     price: 490,
     oldPrice: 690,
     discount: 29,
-    rating: 4.9,
-    sold: 302,
-    newest: 8,
+    rating: 4.8,
+    sold: 61,
     productType: "digital",
     free: false,
     offerAvailable: true,
     available: true,
-    downloadUrl: "",
-    downloadLabel: "Read Book",
-    description:
-      "A premium digital book with useful and engaging content, delivered instantly after purchase."
+    description: "A premium digital book available after successful payment.",
+    downloadUrl: "downloads/premium-digital-book.pdf",
+    downloadLabel: "Download Book"
   },
 
   {
     id: 7,
     name: "Special Selection Watch",
-    category: "watch",
-    image: "https://placehold.co/700x700/ede9fe/0f172a?text=Special+Watch",
+    image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49",
     price: 1680,
-    oldPrice: 2000,
+    oldPrice: 1990,
     discount: 16,
-    rating: 4.6,
-    sold: 64,
-    newest: 2,
+    rating: 4.8,
+    sold: 73,
     productType: "physical",
     free: false,
     offerAvailable: true,
     available: true,
-    description:
-      "A specially selected watch combining a stylish appearance with a premium everyday look."
+    description: "Special selection premium watch with modern styling.",
+    downloadUrl: "",
+    downloadLabel: ""
   },
 
   {
     id: 8,
     name: "Premium Gift Collection",
-    category: "chocolate",
-    image: "https://placehold.co/700x700/fef2f2/0f172a?text=Gift+Collection",
+    image: "https://images.unsplash.com/photo-1512909006721-3d6018887383",
     price: 1290,
     oldPrice: 1590,
     discount: 19,
-    rating: 4.5,
-    sold: 53,
-    newest: 1,
+    rating: 4.7,
+    sold: 54,
     productType: "physical",
     free: false,
     offerAvailable: true,
     available: true,
-    description:
-      "A premium gift collection featuring carefully selected items, perfect for gifting and special moments."
-  }
+    description: "A premium gift collection for your loved ones.",
+    downloadUrl: "",
+    downloadLabel: ""
+  },
 
+  // PAID DIGITAL PRODUCT
+  {
+    id: 9,
+    name: "Premium Success Guide",
+    image: "https://images.unsplash.com/photo-1512820790803-83ca734da794",
+    price: 390,
+    oldPrice: 590,
+    discount: 34,
+    rating: 4.9,
+    sold: 32,
+    productType: "digital",
+    free: false,
+    offerAvailable: true,
+    available: true,
+    description: "A premium digital guide. Payment is required before download.",
+    downloadUrl: "downloads/premium-success-guide.pdf",
+    downloadLabel: "Download Book"
+  },
+
+  // FREE DIGITAL PRODUCT
+  {
+    id: 10,
+    name: "Free Starter Guide",
+    image: "https://images.unsplash.com/photo-1495446815901-a7297e633e8d",
+    price: 0,
+    oldPrice: 0,
+    discount: 0,
+    rating: 4.9,
+    sold: 120,
+    productType: "digital",
+    free: true,
+    offerAvailable: false,
+    available: true,
+    description: "A free digital starter guide for our customers.",
+    downloadUrl: "downloads/free-starter-guide.pdf",
+    downloadLabel: "Download Free Book"
+  }
 ];

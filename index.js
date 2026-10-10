@@ -181,7 +181,6 @@
   window.location.href = `product.html?id=${product.id}`;
 }
 
-    function openSearch(){alert("Search will be connected later.")}
     function openCart(){window.location.href = "cart.html";}
     function openAccount(){alert("Account will be connected later.")}
 

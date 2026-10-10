@@ -159,13 +159,26 @@ function refreshProducts(){
   let list = [...products];
 
 
-  if(selectedCategory !== "all"){
 
-    list = list.filter(
-      product => product.category === selectedCategory
-    );
+if (selectedCategory !== "all") {
+  list = list.filter(product => {
+    const name = (product.name || "").toLowerCase();
 
-  }
+    if (selectedCategory === "book") {
+      return product.productType === "digital";
+    }
+
+    if (selectedCategory === "watch") {
+      return product.category === "watch" || name.includes("watch");
+    }
+
+    if (selectedCategory === "chocolate") {
+      return product.category === "chocolate" || name.includes("chocolate");
+    }
+
+    return product.category === selectedCategory;
+  });
+}
 
 
   const sortValue = sortSelect.value;
@@ -201,7 +214,7 @@ function refreshProducts(){
   if(sortValue === "newest"){
 
     list.sort(
-      (a,b) => b.newest - a.newest
+      (a,b) => b.id - a.id
     );
 
   }

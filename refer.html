@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <title>Refer & Earn - roxxx.shop</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: "var(--color-bg)",
+              dark: "var(--color-dark)",
+              primary: "var(--color-primary)",
+              hover: "var(--color-primary-hover)",
+              accent: "var(--color-accent)",
+              text: "var(--color-text)",
+              muted: "var(--color-muted)",
+              border: "var(--color-border)"
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="refer.css">
+</head>
+
+<body>
+
+  <!-- TOP NAVBAR -->
+  <header class="topbar">
+    <div class="topbar-inner">
+
+      <a href="account.html" class="back-btn" aria-label="Back">
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </a>
+
+      <h1>Refer & Earn</h1>
+
+      <div class="topbar-space"></div>
+
+    </div>
+  </header>
+
+
+  <main class="container mx-auto px-4 md:px-6 pb-10">
+
+    <!-- INTRO -->
+    <section class="intro-card">
+
+      <div class="intro-icon">
+        <svg
+          width="28"
+          height="28"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <circle cx="9" cy="8" r="3"/>
+          <circle cx="17" cy="10" r="3"/>
+          <path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/>
+          <path d="M14 15c3.1.2 5.3 2.1 5.8 5"/>
+        </svg>
+      </div>
+
+      <div>
+        <h2>Refer friends. Earn rewards.</h2>
+        <p>
+          Share your referral link and earn commission from confirmed purchases.
+        </p>
+      </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+    <section class="summary-grid mt-5">
+
+      <div class="summary-card">
+        <span>Total Sell Amount</span>
+        <strong id="totalSellAmount">৳0</strong>
+      </div>
+
+      <div class="summary-card">
+        <span>Ref Bonus Amount</span>
+        <strong id="refBonusAmount">৳0</strong>
+      </div>
+
+      <div class="summary-card">
+        <span>Available Balance</span>
+        <strong id="availableBalance">৳0</strong>
+      </div>
+
+      <div class="summary-card">
+        <span>Total Withdraw</span>
+        <strong id="totalWithdraw">৳0</strong>
+      </div>
+
+    </section>
+
+
+    <!-- LEVEL -->
+    <section class="panel mt-5">
+
+      <div class="panel-heading">
+
+        <div>
+          <p class="eyebrow">CURRENT LEVEL</p>
+          <h2 id="levelTitle">Level 1</h2>
+        </div>
+
+        <div class="rate-badge">
+          <strong id="commissionRate">25%</strong>
+          <span>Commission</span>
+        </div>
+
+      </div>
+
+
+      <div class="level-info">
+
+        <div>
+          <span>Confirmed referral sales</span>
+          <strong id="levelSales">৳0</strong>
+        </div>
+
+        <div class="level-right">
+          <span id="nextLevelText">Next level: ৳5,000</span>
+          <strong id="remainingAmount">৳5,000 remaining</strong>
+        </div>
+
+      </div>
+
+
+      <div class="progress-track">
+        <div id="levelProgress" class="progress-fill"></div>
+      </div>
+
+
+      <p id="levelNote" class="level-note"></p>
+
+    </section>
+
+
+    <!-- REFERRAL LINK -->
+    <section class="panel mt-5">
+
+      <p class="eyebrow">YOUR REFERRAL LINK</p>
+
+      <div class="ref-link-row">
+
+        <input
+          id="referralLink"
+          type="text"
+          readonly
+        >
+
+        <button
+          id="copyLinkBtn"
+          type="button"
+        >
+          Copy
+        </button>
+
+      </div>
+
+      <p id="copyMessage" class="copy-message"></p>
+
+    </section>
+
+
+    <!-- STATS -->
+    <section class="panel mt-5">
+
+      <p class="eyebrow">REFERRAL STATS</p>
+
+      <h2 class="panel-title">
+        Your network
+      </h2>
+
+
+      <div class="stats-grid">
+
+        <div class="stat-box">
+          <span>Total Referred Users</span>
+          <strong id="referredUsers">0</strong>
+        </div>
+
+        <div class="stat-box">
+          <span>Active Referred Buyers</span>
+          <strong id="activeBuyers">0</strong>
+        </div>
+
+      </div>
+
+
+      <p class="privacy-note">
+        Referral relationships and commission eligibility will be verified
+        by the backend after integration.
+      </p>
+
+    </section>
+
+
+    <!-- WITHDRAW -->
+    <section class="panel mt-5">
+
+      <p class="eyebrow">WITHDRAW EARNINGS</p>
+
+      <h2 class="panel-title">
+        Request a withdrawal
+      </h2>
+
+
+      <div class="balance-box">
+
+        <span>Available Balance</span>
+
+        <strong id="withdrawBalance">
+          ৳0
+        </strong>
+
+      </div>
+
+
+      <form id="withdrawForm">
+
+        <label for="bkashNumber">
+          bKash Number
+        </label>
+
+        <input
+          id="bkashNumber"
+          class="form-input"
+          type="tel"
+          inputmode="numeric"
+          maxlength="11"
+          placeholder="01XXXXXXXXX"
+        >
+
+
+        <label for="withdrawAmount">
+          Withdrawal Amount
+        </label>
+
+        <input
+          id="withdrawAmount"
+          class="form-input"
+          type="number"
+          min="50"
+          step="1"
+          placeholder="Minimum ৳50"
+        >
+
+
+        <p class="withdraw-note">
+          Minimum withdrawal amount is <strong>৳50</strong>.
+          Withdrawal requests are processed manually by admin.
+        </p>
+
+
+        <button
+          type="submit"
+          class="withdraw-btn"
+        >
+          Request Withdrawal
+        </button>
+
+
+        <p
+          id="withdrawMessage"
+          class="form-message"
+        ></p>
+
+      </form>
+
+    </section>
+
+
+    <!-- WITHDRAW HISTORY -->
+    <section class="panel mt-5">
+
+      <p class="eyebrow">
+        WITHDRAWAL HISTORY
+      </p>
+
+      <h2 class="panel-title">
+        Recent requests
+      </h2>
+
+
+      <div id="withdrawHistory" class="history-box">
+
+        <div class="empty-history">
+          No withdrawal history yet.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- HOW IT WORKS -->
+    <section class="panel mt-5">
+
+      <p class="eyebrow">
+        HOW IT WORKS
+      </p>
+
+
+      <div class="steps">
+
+        <div class="step">
+
+          <div class="step-number">1</div>
+
+          <div>
+            <h3>Share your link</h3>
+            <p>
+              Send your unique referral link to friends or customers.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">2</div>
+
+          <div>
+            <h3>They purchase</h3>
+            <p>
+              Commission starts only after their payment is confirmed.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">3</div>
+
+          <div>
+            <h3>Earn commission</h3>
+            <p>
+              Confirmed referral sales increase your bonus and level.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">4</div>
+
+          <div>
+            <h3>Withdraw</h3>
+            <p>
+              Request a bKash withdrawal when your balance reaches ৳50.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- BRAND -->
+    <div class="brand-footer">
+
+      <div>
+        roxxx<span>.shop</span>
+      </div>
+
+      <p>
+        Quality products, trusted shopping and better rewards.
+      </p>
+
+    </div>
+
+  </main>
+
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom">
+
+    <div class="bottom-inner">
+
+      <a href="index.html" class="nav-item">
+
+        <svg class="nav-icon" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2">
+
+          <path d="m3 10 9-7 9 7"/>
+          <path d="M5 9v11h14V9"/>
+          <path d="M9 20v-6h6v6"/>
+
+        </svg>
+
+        <span>Home</span>
+
+      </a>
+
+
+      <a href="delivery.html" class="nav-item">
+
+        <svg class="nav-icon" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2">
+
+          <path d="M3 7h11v10H3z"/>
+          <path d="M14 10h4l3 3v4h-7"/>
+          <circle cx="7" cy="19" r="1.5"/>
+          <circle cx="18" cy="19" r="1.5"/>
+
+        </svg>
+
+        <span>Delivery</span>
+
+      </a>
+
+
+      <a href="cart.html" class="nav-item">
+
+        <svg class="nav-icon" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2">
+
+          <circle cx="9" cy="20" r="1"/>
+          <circle cx="19" cy="20" r="1"/>
+          <path d="M3 4h2l2.6 11.2a2 2 0 0 0 2 1.55h7.8a2 2 0 0 0 1.9-1.37L21 8H6"/>
+
+        </svg>
+
+        <span>Cart</span>
+
+      </a>
+
+
+      <a href="index.html" class="nav-item">
+
+        <svg class="nav-icon" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2">
+
+          <circle cx="11" cy="11" r="7"/>
+          <path d="m20 20-4-4"/>
+
+        </svg>
+
+        <span>Search</span>
+
+      </a>
+
+
+      <a href="account.html" class="nav-item active">
+
+        <svg class="nav-icon" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2">
+
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"/>
+
+        </svg>
+
+        <span>Account</span>
+
+      </a>
+
+    </div>
+
+  </nav>
+
+
+  <script src="refer.js"></script>
+
+</body>
+</html>
